@@ -13,6 +13,7 @@
 		1741682F253A9A67007FBE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1741682D253A9A67007FBE66 /* Main.storyboard */; };
 		17416831253A9A6F007FBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17416830253A9A6F007FBE66 /* Assets.xcassets */; };
 		17416834253A9A6F007FBE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17416832253A9A6F007FBE66 /* LaunchScreen.storyboard */; };
+		1741683D253AA001007FBE66 /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1741683C253AA001007FBE66 /* YOLOv3Tiny.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		17416830253A9A6F007FBE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17416833253A9A6F007FBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17416835253A9A6F007FBE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1741683C253AA001007FBE66 /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		17416826253A9A67007FBE66 /* RoadLoader */ = {
 			isa = PBXGroup;
 			children = (
+				1741683B253A9F03007FBE66 /* MLmodel */,
 				17416827253A9A67007FBE66 /* AppDelegate.swift */,
 				17416829253A9A67007FBE66 /* SceneDelegate.swift */,
 				1741682B253A9A67007FBE66 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				17416835253A9A6F007FBE66 /* Info.plist */,
 			);
 			path = RoadLoader;
+			sourceTree = "<group>";
+		};
+		1741683B253A9F03007FBE66 /* MLmodel */ = {
+			isa = PBXGroup;
+			children = (
+				1741683C253AA001007FBE66 /* YOLOv3Tiny.mlmodel */,
+			);
+			path = MLmodel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			files = (
 				1741682C253A9A67007FBE66 /* ViewController.swift in Sources */,
 				17416828253A9A67007FBE66 /* AppDelegate.swift in Sources */,
+				1741683D253AA001007FBE66 /* YOLOv3Tiny.mlmodel in Sources */,
 				1741682A253A9A67007FBE66 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

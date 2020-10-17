@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    let model = YOLOv3Tiny()
+    private let session = AVCaptureSession()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
 }
 
