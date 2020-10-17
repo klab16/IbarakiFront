@@ -25,4 +25,9 @@ class RootTabBarController: UITabBarController {
         
         setViewControllers([imageRecognitionViewController, objectDetectionViewController], animated: false)
     }
+    
+    // 写真を保存
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    }
+    
 }
