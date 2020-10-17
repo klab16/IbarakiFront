@@ -6,4 +6,13 @@
 //  Copyright © 2020 wataru okamoto. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class ObjectDetectionViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        self.view.backgroundColor = .green
+    }
+}

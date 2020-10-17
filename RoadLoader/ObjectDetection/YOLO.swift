@@ -8,10 +8,13 @@
 
 import UIKit
 import AVFoundation
+// CVのフレームワーク
+import Vision
 
 class YOLO {
     let model = YOLOv3Tiny()
     private let session = AVCaptureSession()
     
-    
+    // 背面カメラを入力として使用
+//    let videoDevice = AVCaptureDevice.default()
 }
