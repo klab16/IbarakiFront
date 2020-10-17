@@ -17,9 +17,12 @@ class RootTabBarController: UITabBarController {
     }
     
     private func setTab() {
-        let storyboard = UIStoryboard(name: "imageRecognitionView", bundle: nil)
+        let storyboard = UIStoryboard(name: "ImageRecognitionView", bundle: nil)
         let imageRecognitionViewController: UIViewController = storyboard.instantiateInitialViewController()!
         
-        setViewControllers([imageRecognitionViewController], animated: true)
+        let sb2 = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
+        let objectDetectionViewController: UIViewController = sb2.instantiateInitialViewController()!
+        
+        setViewControllers([imageRecognitionViewController, objectDetectionViewController], animated: false)
     }
 }
