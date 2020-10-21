@@ -23,11 +23,10 @@ class RootTabBarController: UITabBarController {
         let sb2 = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
         let objectDetectionViewController: UIViewController = sb2.instantiateInitialViewController()!
         
-        setViewControllers([imageRecognitionViewController, objectDetectionViewController], animated: false)
-    }
-    
-    // 写真を保存
-    @IBAction func saveButtonTapped(_ sender: Any) {
+        let sb3 = UIStoryboard(name: "ObjectDetection2View", bundle: nil)
+        let od2ViewController: UIViewController = sb3.instantiateInitialViewController()!
+        
+        setViewControllers([imageRecognitionViewController, objectDetectionViewController, od2ViewController], animated: false)
     }
     
 }
