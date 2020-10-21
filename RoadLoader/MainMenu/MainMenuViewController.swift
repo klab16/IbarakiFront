@@ -6,4 +6,8 @@
 //  Copyright © 2020 wataru okamoto. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MainMenuViewController: UIViewController {
+    
+}
