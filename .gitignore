@@ -94,3 +94,5 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/swift
 RoadLoader/models/YOLOv3.mlmodel
 .git/objects/29/36231414f33c0faeda84dbb628d8ee54be7de1
+RoadLoader/models/YOLOv3.mlmodel
+.git/objects/29/36231414f33c0faeda84dbb628d8ee54be7de1
