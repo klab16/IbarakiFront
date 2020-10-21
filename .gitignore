@@ -1,7 +1,8 @@
 .DS_Store
 
 # ML models
-YOLOv3.mlmodel
+RoadLoader/models/YOLOv3.mlmodel
+models/
 
 # Created by https://www.toptal.com/developers/gitignore/api/swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift
