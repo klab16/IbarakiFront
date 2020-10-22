@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8to-u5-urC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--setting-->
+        <scene sceneID="Xb6-9T-YNN">
+            <objects>
+                <viewController storyboardIdentifier="MainMenuView" title="setting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W4U-oR-xnq" customClass="MainMenuViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8DZ-AT-gm8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMq-1l-E3c">
+                                <rect key="frame" x="20" y="153" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="height" multiplier="1:1" id="oDe-s0-sL9"/>
+                                </constraints>
+                                <state key="normal" title="walk"/>
+                                <connections>
+                                    <action selector="walkButtonTapped:" destination="W4U-oR-xnq" eventType="touchUpInside" id="ppf-Rb-knL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-TT-pNE">
+                                <rect key="frame" x="157" y="153" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QFe-TT-pNE" secondAttribute="height" multiplier="1:1" id="g48-b9-o3z"/>
+                                </constraints>
+                                <state key="normal" title="bike"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEb-ca-pPL">
+                                <rect key="frame" x="294" y="153" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iEb-ca-pPL" secondAttribute="height" multiplier="1:1" id="oJz-vw-PbZ"/>
+                                </constraints>
+                                <state key="normal" title="motorbike"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交通手段を選んでください" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38D-cE-VKY">
+                                <rect key="frame" x="20" y="100" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-Ab-MlA">
+                                <rect key="frame" x="157" y="286" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="W3o-Ab-MlA" secondAttribute="height" multiplier="1:1" id="H26-bL-Iof"/>
+                                </constraints>
+                                <state key="normal" title="car"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-hb-5Ke">
+                                <rect key="frame" x="20" y="286" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tbb-hb-5Ke" secondAttribute="height" multiplier="1:1" id="04Q-DE-d6e"/>
+                                </constraints>
+                                <state key="normal" title="track"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBb-oN-6mn">
+                                <rect key="frame" x="20" y="776" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="bVA-Qe-dOq"/>
+                                </constraints>
+                                <state key="normal" title="保存"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="width" id="54Z-64-Mre"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="leading" secondItem="8DZ-AT-gm8" secondAttribute="leadingMargin" id="6g3-d8-cua"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="centerX" secondItem="QFe-TT-pNE" secondAttribute="centerX" id="84c-eX-3xN"/>
+                            <constraint firstItem="g2w-nu-Hig" firstAttribute="bottom" secondItem="IBb-oN-6mn" secondAttribute="bottom" constant="26" id="8SM-1W-CZl"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="leading" secondItem="W3o-Ab-MlA" secondAttribute="leading" id="AXc-9I-qaC"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="leading" secondItem="DMq-1l-E3c" secondAttribute="leading" id="BZI-ab-y9m"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="baseline" secondItem="QFe-TT-pNE" secondAttribute="baseline" id="E5w-NJ-OQM"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="width" id="E6T-78-JLH"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="top" secondItem="g2w-nu-Hig" secondAttribute="top" constant="12" id="GLW-UY-h6N"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="trailing" secondItem="IBb-oN-6mn" secondAttribute="trailing" id="HlE-t1-aAw"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="width" id="Isi-LU-kqf"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="KFr-x2-9ga"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="trailing" secondItem="iEb-ca-pPL" secondAttribute="trailing" id="MS5-H2-D9U"/>
+                            <constraint firstItem="W3o-Ab-MlA" firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="width" id="PF5-hd-mVP"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="leading" secondItem="IBb-oN-6mn" secondAttribute="leading" id="Pwj-Wq-Th9"/>
+                            <constraint firstItem="W3o-Ab-MlA" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="Qhn-kc-oZv"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="baseline" secondItem="iEb-ca-pPL" secondAttribute="baseline" id="haP-pF-mb2"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="top" secondItem="DMq-1l-E3c" secondAttribute="bottom" constant="33" id="i9A-Oe-hq6"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="lnM-qq-UST"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="ni4-rt-YZ7"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="leading" secondItem="DMq-1l-E3c" secondAttribute="trailing" constant="37" id="o9F-03-Tob"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="32.5" id="qyZ-Bf-wNa"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="leading" secondItem="tbb-hb-5Ke" secondAttribute="leading" id="rAG-jT-SRy"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="baseline" secondItem="W3o-Ab-MlA" secondAttribute="baseline" id="xgz-Tq-JK0"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="trailing" secondItem="8DZ-AT-gm8" secondAttribute="trailingMargin" id="ygW-cF-F6l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="g2w-nu-Hig"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="設定" id="Txg-tx-Kd3"/>
+                    <connections>
+                        <outlet property="bikeButton" destination="QFe-TT-pNE" id="PJL-zQ-cKq"/>
+                        <outlet property="carButton" destination="W3o-Ab-MlA" id="XeC-F5-rRd"/>
+                        <outlet property="motorbikeButton" destination="iEb-ca-pPL" id="nFh-1H-rmg"/>
+                        <outlet property="saveButton" destination="IBb-oN-6mn" id="xue-5X-gCc"/>
+                        <outlet property="trackButton" destination="tbb-hb-5Ke" id="MAV-aq-dXc"/>
+                        <outlet property="walkButton" destination="DMq-1l-E3c" id="TmQ-x0-69b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnp-RW-WuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114.4927536231885" y="164.73214285714286"/>
+        </scene>
+        <!--setting-->
+        <scene sceneID="C5g-UY-NJ3">
+            <objects>
+                <navigationController title="setting" automaticallyAdjustsScrollViewInsets="NO" id="8to-u5-urC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DQc-LS-XiA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W4U-oR-xnq" kind="relationship" relationship="rootViewController" id="DnE-iX-PW0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jEQ-6d-Zkp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205.79710144927537" y="164.73214285714286"/>
+        </scene>
+    </scenes>
+</document>
