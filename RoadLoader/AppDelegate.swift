@@ -17,11 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // 最初に表示させるViewControllerにRootViewControllerを指定する
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = RootTabBarController()
+//        window?.makeKeyAndVisible()
+        
+        
+        // 最初の画面をMainMenuViewnいする
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = RootTabBarController()
-//        let sb : UIStoryboard = UIStoryboard(name: "ImageRecognitionView", bundle: nil)
-//        window?.rootViewController = sb.instantiateViewController(withIdentifier: "ImageRecognitionView")
-        window?.makeKeyAndVisible()
+        let storyboard = UIStoryboard(name: "MainMenuView", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
         
         return true
     }
