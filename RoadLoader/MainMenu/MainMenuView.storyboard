@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8to-u5-urC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,20 +7,146 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--setting-->
         <scene sceneID="Xb6-9T-YNN">
             <objects>
-                <viewController id="W4U-oR-xnq" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenuView" title="setting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W4U-oR-xnq" customClass="MainMenuViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8DZ-AT-gm8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMq-1l-E3c">
+                                <rect key="frame" x="20" y="128.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="bDh-ta-lVZ"/>
+                                    <constraint firstAttribute="height" constant="100" id="ygH-K4-QPt"/>
+                                </constraints>
+                                <state key="normal" title="walk"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-TT-pNE">
+                                <rect key="frame" x="157" y="128.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="144-iU-hyV"/>
+                                    <constraint firstAttribute="height" constant="100" id="FiS-f1-hRL"/>
+                                </constraints>
+                                <state key="normal" title="bike"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEb-ca-pPL">
+                                <rect key="frame" x="294" y="128.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ffV-oM-drR"/>
+                                    <constraint firstAttribute="width" constant="100" id="mIc-te-HpO"/>
+                                </constraints>
+                                <state key="normal" title="motorbike"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交通手段を選んでください" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38D-cE-VKY">
+                                <rect key="frame" x="20" y="100" width="374" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="eOh-ow-4eu"/>
+                                    <constraint firstAttribute="width" constant="374" id="tW6-WF-lO4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-Ab-MlA">
+                                <rect key="frame" x="20" y="236.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0wF-6b-cSN"/>
+                                    <constraint firstAttribute="height" constant="100" id="54W-t1-vJ7"/>
+                                </constraints>
+                                <state key="normal" title="car"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-hb-5Ke">
+                                <rect key="frame" x="157" y="236.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="4lh-3l-9f4"/>
+                                    <constraint firstAttribute="width" constant="100" id="Nde-Xp-7xi"/>
+                                </constraints>
+                                <state key="normal" title="track"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTF-pJ-XBc">
+                                <rect key="frame" x="294" y="236.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eZ4-xs-sxz"/>
+                                    <constraint firstAttribute="height" constant="100" id="u8G-tw-FfQ"/>
+                                </constraints>
+                                <state key="normal" title="none"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBb-oN-6mn">
+                                <rect key="frame" x="20" y="782" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="9la-lf-z6H"/>
+                                    <constraint firstAttribute="width" constant="374" id="Wap-6D-USd"/>
+                                </constraints>
+                                <state key="normal" title="保存"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="8" id="01b-n9-JhR"/>
+                            <constraint firstItem="IBb-oN-6mn" firstAttribute="leading" secondItem="g2w-nu-Hig" secondAttribute="leading" constant="20" id="1iB-ht-ZNp"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="8" id="2vp-kA-umR"/>
+                            <constraint firstItem="pTF-pJ-XBc" firstAttribute="top" secondItem="iEb-ca-pPL" secondAttribute="bottom" constant="8" id="3cM-o3-Hhw"/>
+                            <constraint firstItem="g2w-nu-Hig" firstAttribute="trailing" secondItem="iEb-ca-pPL" secondAttribute="trailing" constant="20" id="5zM-K8-ffY"/>
+                            <constraint firstItem="W3o-Ab-MlA" firstAttribute="top" secondItem="DMq-1l-E3c" secondAttribute="bottom" constant="8" id="7gv-U9-GeW"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="top" secondItem="g2w-nu-Hig" secondAttribute="top" constant="12" id="83e-vg-LON"/>
+                            <constraint firstItem="W3o-Ab-MlA" firstAttribute="top" secondItem="DMq-1l-E3c" secondAttribute="bottom" constant="8" id="8Ie-6s-Lge"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="leading" secondItem="g2w-nu-Hig" secondAttribute="leading" constant="20" id="8QQ-QV-8Yx"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="top" secondItem="QFe-TT-pNE" secondAttribute="bottom" constant="8" id="9MA-yz-Ocu"/>
+                            <constraint firstItem="pTF-pJ-XBc" firstAttribute="leading" secondItem="tbb-hb-5Ke" secondAttribute="trailing" constant="37" id="A2R-MP-WLN"/>
+                            <constraint firstItem="W3o-Ab-MlA" firstAttribute="leading" secondItem="g2w-nu-Hig" secondAttribute="leading" constant="20" id="Aaj-bL-jWz"/>
+                            <constraint firstItem="pTF-pJ-XBc" firstAttribute="top" secondItem="iEb-ca-pPL" secondAttribute="bottom" constant="8" id="AjE-8a-rax"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="leading" secondItem="QFe-TT-pNE" secondAttribute="trailing" constant="37" id="Cz8-Rd-SPn"/>
+                            <constraint firstItem="38D-cE-VKY" firstAttribute="leading" secondItem="g2w-nu-Hig" secondAttribute="leading" constant="20" id="ERa-Fw-L1R"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="leading" secondItem="DMq-1l-E3c" secondAttribute="trailing" constant="37" id="MDs-LN-afz"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="top" secondItem="QFe-TT-pNE" secondAttribute="bottom" constant="8" id="UAi-fp-bAh"/>
+                            <constraint firstItem="g2w-nu-Hig" firstAttribute="trailing" secondItem="38D-cE-VKY" secondAttribute="trailing" constant="20" id="YC8-xg-dMF"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="leading" secondItem="W3o-Ab-MlA" secondAttribute="trailing" constant="37" id="bDT-vp-HBa"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="leading" secondItem="QFe-TT-pNE" secondAttribute="trailing" constant="37" id="grN-Ah-VQF"/>
+                            <constraint firstItem="DMq-1l-E3c" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="8" id="mgS-3b-2rS"/>
+                            <constraint firstItem="QFe-TT-pNE" firstAttribute="leading" secondItem="DMq-1l-E3c" secondAttribute="trailing" constant="37" id="nG0-LJ-dfO"/>
+                            <constraint firstItem="IBb-oN-6mn" firstAttribute="bottom" secondItem="g2w-nu-Hig" secondAttribute="bottom" id="osv-Ze-kNp"/>
+                            <constraint firstItem="pTF-pJ-XBc" firstAttribute="leading" secondItem="tbb-hb-5Ke" secondAttribute="trailing" constant="37" id="tgA-qa-Y9W"/>
+                            <constraint firstItem="g2w-nu-Hig" firstAttribute="trailing" secondItem="pTF-pJ-XBc" secondAttribute="trailing" constant="20" id="uuS-uJ-0Eb"/>
+                            <constraint firstItem="g2w-nu-Hig" firstAttribute="trailing" secondItem="IBb-oN-6mn" secondAttribute="trailing" constant="20" id="wqL-de-2Ht"/>
+                            <constraint firstItem="tbb-hb-5Ke" firstAttribute="leading" secondItem="W3o-Ab-MlA" secondAttribute="trailing" constant="37" id="y2z-HY-BUY"/>
+                            <constraint firstItem="iEb-ca-pPL" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="8" id="yuN-Hy-J0S"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="g2w-nu-Hig"/>
                     </view>
+                    <navigationItem key="navigationItem" title="設定" id="Txg-tx-Kd3"/>
+                    <connections>
+                        <outlet property="bikeButton" destination="QFe-TT-pNE" id="PJL-zQ-cKq"/>
+                        <outlet property="carButton" destination="W3o-Ab-MlA" id="XeC-F5-rRd"/>
+                        <outlet property="motorbikeButton" destination="iEb-ca-pPL" id="nFh-1H-rmg"/>
+                        <outlet property="noneButton" destination="pTF-pJ-XBc" id="fap-RR-wBk"/>
+                        <outlet property="saveButton" destination="IBb-oN-6mn" id="xue-5X-gCc"/>
+                        <outlet property="trackButton" destination="tbb-hb-5Ke" id="MAV-aq-dXc"/>
+                        <outlet property="walkButton" destination="DMq-1l-E3c" id="TmQ-x0-69b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnp-RW-WuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="207" y="165"/>
+            <point key="canvasLocation" x="1114.4927536231885" y="164.73214285714286"/>
+        </scene>
+        <!--setting-->
+        <scene sceneID="C5g-UY-NJ3">
+            <objects>
+                <navigationController title="setting" automaticallyAdjustsScrollViewInsets="NO" id="8to-u5-urC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DQc-LS-XiA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W4U-oR-xnq" kind="relationship" relationship="rootViewController" id="DnE-iX-PW0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jEQ-6d-Zkp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205.79710144927537" y="164.73214285714286"/>
         </scene>
     </scenes>
 </document>

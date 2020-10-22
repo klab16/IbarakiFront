@@ -26,7 +26,10 @@ class RootTabBarController: UITabBarController {
         let sb3 = UIStoryboard(name: "ObjectDetection2View", bundle: nil)
         let od2ViewController: UIViewController = sb3.instantiateInitialViewController()!
         
-        setViewControllers([imageRecognitionViewController, objectDetectionViewController, od2ViewController], animated: false)
+        let sb4 = UIStoryboard(name: "MainMenuView", bundle: nil)
+        let mainmenuViewController: UIViewController = sb4.instantiateInitialViewController()!
+        
+        setViewControllers([imageRecognitionViewController, objectDetectionViewController, od2ViewController, mainmenuViewController], animated: false)
     }
     
 }
