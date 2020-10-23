@@ -1,7 +1,82 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rfs-M3-ae7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Mode Select View Controller-->
+        <scene sceneID="AGa-pG-hqQ">
+            <objects>
+                <viewController storyboardIdentifier="ModeSelectView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfs-M3-ae7" customClass="ModeSelectViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gjx-FR-FHj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたの乗り物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAr-ld-ToR">
+                                <rect key="frame" x="20" y="64" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P73-DA-aVV">
+                                <rect key="frame" x="20" y="105" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P73-DA-aVV" secondAttribute="height" multiplier="1:1" id="jfU-4i-v0k"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-Pk-I5D">
+                                <rect key="frame" x="20" y="263" width="374" height="128"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXG-gx-SLc">
+                                <rect key="frame" x="20" y="582" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="yC2-Jb-NJP"/>
+                                </constraints>
+                                <state key="normal" title="翻訳"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-Ri-9bW">
+                                <rect key="frame" x="20" y="725" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="VqC-if-3QC"/>
+                                </constraints>
+                                <state key="normal" title="アシスト"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="P73-DA-aVV" secondAttribute="trailing" constant="244" id="3N2-xm-TrJ"/>
+                            <constraint firstAttribute="bottom" secondItem="DvV-Pk-I5D" secondAttribute="bottom" constant="505" id="4UO-k5-rQh"/>
+                            <constraint firstItem="fAr-ld-ToR" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="5kg-I4-JwS"/>
+                            <constraint firstItem="P73-DA-aVV" firstAttribute="top" secondItem="fAr-ld-ToR" secondAttribute="bottom" constant="20" id="9nN-Rk-187"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="fAr-ld-ToR" secondAttribute="trailing" constant="20" id="BgO-6H-RsO"/>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="top" secondItem="P73-DA-aVV" secondAttribute="bottom" constant="8" id="K6p-VU-0CE"/>
+                            <constraint firstItem="SXG-gx-SLc" firstAttribute="leading" secondItem="wA0-Ri-9bW" secondAttribute="leading" id="NxF-LI-ay9"/>
+                            <constraint firstItem="wA0-Ri-9bW" firstAttribute="top" secondItem="SXG-gx-SLc" secondAttribute="bottom" constant="83" id="S9V-hT-1Tb"/>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="trailing" secondItem="SXG-gx-SLc" secondAttribute="trailing" id="ZtX-lN-60j"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="bottom" secondItem="wA0-Ri-9bW" secondAttribute="bottom" constant="77" id="aDD-3s-e7p"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="DvV-Pk-I5D" secondAttribute="trailing" constant="20" id="aMu-5b-A8B"/>
+                            <constraint firstItem="P73-DA-aVV" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="gzg-pR-FLY"/>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="leading" secondItem="SXG-gx-SLc" secondAttribute="leading" id="mia-kp-fAs"/>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="oAW-mg-ALB"/>
+                            <constraint firstItem="SXG-gx-SLc" firstAttribute="trailing" secondItem="wA0-Ri-9bW" secondAttribute="trailing" id="wzj-hV-XGx"/>
+                            <constraint firstItem="fAr-ld-ToR" firstAttribute="top" secondItem="DyO-Ry-k8a" secondAttribute="top" constant="20" id="zuE-Fk-4V3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DyO-Ry-k8a"/>
+                    </view>
+                    <connections>
+                        <outlet property="assistButton" destination="wA0-Ri-9bW" id="lSD-8b-N9B"/>
+                        <outlet property="detailView" destination="DvV-Pk-I5D" id="37Q-Ue-MH3"/>
+                        <outlet property="iconImageView" destination="P73-DA-aVV" id="5pc-gi-4pY"/>
+                        <outlet property="translationButton" destination="SXG-gx-SLc" id="xoi-hd-f58"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="955-dx-MOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200.00000000000003" y="128.57142857142856"/>
+        </scene>
+    </scenes>
 </document>

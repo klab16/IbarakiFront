@@ -26,6 +26,8 @@
 		1741685B253BFE69007FBE66 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741685A253BFE69007FBE66 /* UIImage+CVPixelBuffer.swift */; };
 		1741685D253BFED6007FBE66 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741685C253BFED6007FBE66 /* Helpers.swift */; };
 		1741685F253C04E2007FBE66 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741685E253C04E2007FBE66 /* VideoCapture.swift */; };
+		1765A6A22542E76F00E3A6BC /* ModeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765A6A12542E76F00E3A6BC /* ModeSelectViewController.swift */; };
+		1765A6A42542E77F00E3A6BC /* ModeSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1765A6A32542E77F00E3A6BC /* ModeSelectView.storyboard */; };
 		176B0936253EF396001C7670 /* ObjectDetection2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176B0935253EF396001C7670 /* ObjectDetection2ViewController.swift */; };
 		176B093A253EF5EA001C7670 /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176B0939253EF5EA001C7670 /* DrawingBoundingBoxView.swift */; };
 		176B093E25400E50001C7670 /* ObjectDetection2View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B093D25400E50001C7670 /* ObjectDetection2View.storyboard */; };
@@ -55,6 +57,8 @@
 		1741685A253BFE69007FBE66 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		1741685C253BFED6007FBE66 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1741685E253C04E2007FBE66 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		1765A6A12542E76F00E3A6BC /* ModeSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectViewController.swift; sourceTree = "<group>"; };
+		1765A6A32542E77F00E3A6BC /* ModeSelectView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModeSelectView.storyboard; sourceTree = "<group>"; };
 		176B0935253EF396001C7670 /* ObjectDetection2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection2ViewController.swift; sourceTree = "<group>"; };
 		176B0939253EF5EA001C7670 /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		176B093D25400E50001C7670 /* ObjectDetection2View.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ObjectDetection2View.storyboard; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 		1765A6A02542E5DC00E3A6BC /* ModeSelect */ = {
 			isa = PBXGroup;
 			children = (
+				1765A6A12542E76F00E3A6BC /* ModeSelectViewController.swift */,
+				1765A6A32542E77F00E3A6BC /* ModeSelectView.storyboard */,
 			);
 			path = ModeSelect;
 			sourceTree = "<group>";
@@ -248,6 +254,7 @@
 				17416834253A9A6F007FBE66 /* LaunchScreen.storyboard in Resources */,
 				1741684E253AD2FA007FBE66 /* ImageRecognitionView.storyboard in Resources */,
 				176B093E25400E50001C7670 /* ObjectDetection2View.storyboard in Resources */,
+				1765A6A42542E77F00E3A6BC /* ModeSelectView.storyboard in Resources */,
 				17416831253A9A6F007FBE66 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +276,7 @@
 				176B0936253EF396001C7670 /* ObjectDetection2ViewController.swift in Sources */,
 				17416857253BFD90007FBE66 /* BoundingBox.swift in Sources */,
 				17416842253AC949007FBE66 /* Resnet50Int8LUT.mlmodel in Sources */,
+				1765A6A22542E76F00E3A6BC /* ModeSelectViewController.swift in Sources */,
 				17416848253ACEB5007FBE66 /* ImageRecognitionViewController.swift in Sources */,
 				17416828253A9A67007FBE66 /* AppDelegate.swift in Sources */,
 				176B093A253EF5EA001C7670 /* DrawingBoundingBoxView.swift in Sources */,
