@@ -119,7 +119,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g2w-nu-Hig"/>
                     </view>
-                    <navigationItem key="navigationItem" title="設定" id="Txg-tx-Kd3"/>
+                    <navigationItem key="navigationItem" title="乗り物選択" id="Txg-tx-Kd3"/>
                     <connections>
                         <outlet property="bikeButton" destination="QFe-TT-pNE" id="PJL-zQ-cKq"/>
                         <outlet property="carButton" destination="W3o-Ab-MlA" id="XeC-F5-rRd"/>
