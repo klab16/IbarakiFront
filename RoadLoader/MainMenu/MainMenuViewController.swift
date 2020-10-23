@@ -16,8 +16,11 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var carButton: UIButton!
     @IBOutlet weak var trackButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var detailsView: UIView!
     
     var flag = false
+    // 排気量などを格納する変数
+    var detailsNum: Int?
     
     // ボタンの種類の列挙型
     enum buttonTag: Int {
@@ -47,6 +50,8 @@ class MainMenuViewController: UIViewController {
         // ボタン状態の更新
         setButtonState(buttonState: self.buttonState)
         
+        // detailsViewの色を普通の色にする
+        //self.detailsView.backgroundColor = .systemBackground
     }
     
     func setButtonIcon() {
@@ -117,7 +122,7 @@ class MainMenuViewController: UIViewController {
         button.backgroundColor = .none
     }
     
-    // 乗り物のボタンを押された時の処理
+    // どれでもいいから乗り物のボタンを押された時の処理
     @IBAction func pushButton(_ sender: Any) {
         guard let button = sender as? UIButton else {
             return
@@ -128,14 +133,31 @@ class MainMenuViewController: UIViewController {
             switch tag {
             case .walk:
                 buttonAction(buttonName: "walk", button: button)
+                deleteTextField()
             case .bike:
                 buttonAction(buttonName: "bike", button: button)
+                deleteTextField()
             case .motorbike:
                 buttonAction(buttonName: "motorbike", button: button)
+                guard let flag = buttonState["motorbike"] else { return }
+                if flag {
+                    setTextField(buttonName: "motorbike")
+                } else {
+                    deleteTextField()
+                }
+                
             case .car:
                 buttonAction(buttonName: "car", button: button)
+                deleteTextField()
             case .track:
                 buttonAction(buttonName: "track", button: button)
+                guard let flag = buttonState["track"] else { return }
+                if flag {
+                    setTextField(buttonName: "track")
+                } else {
+                    deleteTextField()
+                }
+                
             }
         }
     }
@@ -182,5 +204,88 @@ class MainMenuViewController: UIViewController {
         
     }
     
+    // バイク，トラックが選択された場合，排気量や重量を入力するテキストフィールドを追加
+    func setTextField(buttonName: String) {
+        let textField = UITextField()
+        let unitLabel = UILabel()
+        deleteTextField()
+        
+        textField.frame = CGRect(x: 10, y: 50, width: UIScreen.main.bounds.size.width/1.8, height: 30)
+        
+        // キーボードタイプを指定
+        textField.keyboardType = .default
+        // 枠線のスタイルを設定
+        textField.borderStyle = .roundedRect
+        // 改行ボタンの種類を設定
+        textField.returnKeyType = .done
+        textField.keyboardType = UIKeyboardType.numberPad
+        
+        unitLabel.frame = CGRect(x: UIScreen.main.bounds.size.width-80, y: 50, width: 50, height: 30)
+        unitLabel.textAlignment = .center
+        unitLabel.font = UIFont(name: "HiraKaKuProN-W6", size: 30)
+        unitLabel.textColor = .gray
+        unitLabel.text = ""
+        
+        if buttonName == "motorbike" {
+            textField.placeholder = "排気量を入力してください"
+            unitLabel.text = "cc"
+        } else if buttonName == "track" {
+            textField.placeholder = "重量を入力してください"
+            unitLabel.text = "t"
+        }
+        
+        self.detailsView.addSubview(textField)
+        self.detailsView.addSubview(unitLabel)
+        self.detailsView.bringSubviewToFront(textField)
+        
+        textField.delegate = self
+        
+    }
+    
+    // detailsViewのUI部品を消す
+    func deleteTextField() {
+        for v in self.detailsView.subviews {
+            v.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let num: Int = self.detailsNum else { return }
+        UserDefaults.standard.set(num, forKey: "detail")
+        print("save", num)
+    }
+    
 }
+extension MainMenuViewController: UITextFieldDelegate {
+    // 改行ボタンを押した時の処理
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("Return")
+        return true
+    }
 
+    // クリアボタンが押された時の処理
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        print("Clear")
+        return true
+    }
+
+    // テキストフィールドがフォーカスされた時の処理
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("Start")
+        return true
+    }
+
+    // テキストフィールドでの編集が終了する直前での処理
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("End",textField.text ?? "")
+        if let contents: String = textField.text {
+            self.detailsNum = Int(contents)!
+        }
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.detailsView.endEditing(true)
+    }
+    
+}

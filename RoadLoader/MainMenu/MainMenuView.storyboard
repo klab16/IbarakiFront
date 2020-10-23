@@ -67,6 +67,9 @@
                                     <constraint firstAttribute="height" constant="60" id="J2g-FV-gHW"/>
                                 </constraints>
                                 <state key="normal" title="保存"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="W4U-oR-xnq" eventType="touchUpInside" id="JcD-cq-fV4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-hb-5Ke">
                                 <rect key="frame" x="157" y="297" width="100" height="100"/>
@@ -78,6 +81,9 @@
                                     <action selector="pushButton:" destination="W4U-oR-xnq" eventType="touchUpInside" id="cJi-76-m3f"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gp7-wT-HGi">
+                                <rect key="frame" x="20" y="405" width="374" height="363"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -93,12 +99,16 @@
                             <constraint firstItem="iEb-ca-pPL" firstAttribute="trailing" secondItem="IBb-oN-6mn" secondAttribute="trailing" id="Jc4-dB-VaZ"/>
                             <constraint firstItem="DMq-1l-E3c" firstAttribute="top" secondItem="38D-cE-VKY" secondAttribute="bottom" constant="32.5" id="KA5-Zn-4Zg"/>
                             <constraint firstItem="g2w-nu-Hig" firstAttribute="bottom" secondItem="IBb-oN-6mn" secondAttribute="bottom" constant="26" id="NBH-Gh-3bp"/>
+                            <constraint firstItem="IBb-oN-6mn" firstAttribute="top" secondItem="gp7-wT-HGi" secondAttribute="bottom" constant="8" id="POv-io-2Sy"/>
                             <constraint firstItem="38D-cE-VKY" firstAttribute="trailing" secondItem="8DZ-AT-gm8" secondAttribute="trailingMargin" id="WdB-Kk-UEs"/>
                             <constraint firstItem="38D-cE-VKY" firstAttribute="top" secondItem="g2w-nu-Hig" secondAttribute="top" constant="12" id="Wyw-G8-kpL"/>
+                            <constraint firstItem="gp7-wT-HGi" firstAttribute="top" secondItem="W3o-Ab-MlA" secondAttribute="bottom" constant="8" id="XAT-lt-cgy"/>
                             <constraint firstItem="W3o-Ab-MlA" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="YzZ-vb-1N9"/>
                             <constraint firstItem="QFe-TT-pNE" firstAttribute="leading" secondItem="DMq-1l-E3c" secondAttribute="trailing" constant="37" id="fVb-MQ-8ix"/>
+                            <constraint firstItem="gp7-wT-HGi" firstAttribute="trailing" secondItem="IBb-oN-6mn" secondAttribute="trailing" id="gCA-LB-sNq"/>
                             <constraint firstItem="38D-cE-VKY" firstAttribute="trailing" secondItem="iEb-ca-pPL" secondAttribute="trailing" id="gXc-k1-H1Q"/>
                             <constraint firstItem="tbb-hb-5Ke" firstAttribute="width" secondItem="DMq-1l-E3c" secondAttribute="width" id="lC3-9t-DWs"/>
+                            <constraint firstItem="gp7-wT-HGi" firstAttribute="leading" secondItem="IBb-oN-6mn" secondAttribute="leading" id="ngQ-Sh-eWh"/>
                             <constraint firstItem="tbb-hb-5Ke" firstAttribute="height" secondItem="DMq-1l-E3c" secondAttribute="height" id="okg-9x-emC"/>
                             <constraint firstItem="QFe-TT-pNE" firstAttribute="baseline" secondItem="iEb-ca-pPL" secondAttribute="baseline" id="syW-Bx-aYn"/>
                             <constraint firstItem="DMq-1l-E3c" firstAttribute="leading" secondItem="W3o-Ab-MlA" secondAttribute="leading" id="te4-MU-xsl"/>
@@ -113,6 +123,7 @@
                     <connections>
                         <outlet property="bikeButton" destination="QFe-TT-pNE" id="PJL-zQ-cKq"/>
                         <outlet property="carButton" destination="W3o-Ab-MlA" id="XeC-F5-rRd"/>
+                        <outlet property="detailsView" destination="gp7-wT-HGi" id="ULE-K0-dMR"/>
                         <outlet property="motorbikeButton" destination="iEb-ca-pPL" id="nFh-1H-rmg"/>
                         <outlet property="saveButton" destination="IBb-oN-6mn" id="xue-5X-gCc"/>
                         <outlet property="trackButton" destination="tbb-hb-5Ke" id="MAV-aq-dXc"/>
