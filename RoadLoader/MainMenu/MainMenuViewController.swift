@@ -39,6 +39,14 @@ class MainMenuViewController: UIViewController {
         
         // ボタンの枠線の追加
         setButtonBorder()
+        
+        // UserDefaultsの読み込み
+        guard let buttonState = UserDefaults.standard.dictionary(forKey: "norimono") as?  Dictionary<String, Bool> else { return }
+        self.buttonState = buttonState
+        
+        // ボタン状態の更新
+        setButtonState(buttonState: self.buttonState)
+        
     }
     
     func setButtonIcon() {
@@ -132,38 +140,47 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    // 各乗り物ボタンの処理
     func buttonAction(buttonName: String, button: UIButton) {
         // ボタンの押下フラグ
         guard var flag = buttonState[buttonName] else { return }
         flag = !flag
-        buttonState[buttonName] = flag
-        print(buttonState)
         
-        if flag {
-            selectedButtonColor(button: button)
-        } else {
-            normalButtonColor(button: button)
+        for (key, _) in buttonState {
+            if buttonName == key {
+                buttonState[buttonName] = flag
+                
+            } else {
+                buttonState[key] = false
+            }
         }
+        
+        //print(buttonState)
+        
+        // 各ボタンの状態を更新
+        setButtonState(buttonState: buttonState)
+        
+        // UserDefaultsにボタンの状態を保存
+        UserDefaults.standard.set(buttonState, forKey: "norimono")
     }
     
-//    @IBAction func walkButtonTapped(_ sender: Any) {
-//        // ボタンの反転処理
-//        flag = !flag
-//        if flag {
-//            selectedButtonColor(button: self.walkButton)
-//        } else {
-//            normalButtonColor(button: self.walkButton)
-//        }
-//    }
-//
-//    @IBAction func bikeButtonTapped(_ sender: Any) {
-//        flag = !flag
-//        if flag {
-//            selectedButtonColor(button: self.bikeButton)
-//        } else {
-//            normalButtonColor(button: self.bikeButton)
-//        }
-//    }
+    // ボタンの状態を反映する処理
+    func setButtonState(buttonState: Dictionary<String, Bool>) {
+        let buttonNames: Dictionary<String, UIButton> = ["walk": walkButton, "bike": bikeButton, "motorbike": motorbikeButton, "car": carButton, "track": trackButton]
+        
+        for (key, button) in buttonNames {
+            guard let flag = buttonState[key] else { return }
+            if flag {
+                // 押下
+                selectedButtonColor(button: button)
+            } else {
+                // not押下
+                normalButtonColor(button: button)
+            }
+        }
+        
+        
+    }
     
 }
 

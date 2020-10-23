@@ -51,14 +51,14 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-hb-5Ke">
-                                <rect key="frame" x="157" y="288" width="100" height="100"/>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-Ab-MlA">
+                                <rect key="frame" x="20" y="297" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="tbb-hb-5Ke" secondAttribute="height" multiplier="1:1" id="z2a-df-kb4"/>
+                                    <constraint firstAttribute="width" secondItem="W3o-Ab-MlA" secondAttribute="height" multiplier="1:1" id="GaP-T7-jNT"/>
                                 </constraints>
-                                <state key="normal" title="track"/>
+                                <state key="normal" title="car"/>
                                 <connections>
-                                    <action selector="pushButton:" destination="W4U-oR-xnq" eventType="touchUpInside" id="cJi-76-m3f"/>
+                                    <action selector="pushButton:" destination="W4U-oR-xnq" eventType="touchUpInside" id="lQB-kL-TUF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBb-oN-6mn">
@@ -68,14 +68,14 @@
                                 </constraints>
                                 <state key="normal" title="保存"/>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3o-Ab-MlA">
-                                <rect key="frame" x="20" y="297" width="100" height="100"/>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-hb-5Ke">
+                                <rect key="frame" x="157" y="297" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="W3o-Ab-MlA" secondAttribute="height" multiplier="1:1" id="GaP-T7-jNT"/>
+                                    <constraint firstAttribute="width" secondItem="tbb-hb-5Ke" secondAttribute="height" multiplier="1:1" id="z2a-df-kb4"/>
                                 </constraints>
-                                <state key="normal" title="car"/>
+                                <state key="normal" title="track"/>
                                 <connections>
-                                    <action selector="pushButton:" destination="W4U-oR-xnq" eventType="touchUpInside" id="lQB-kL-TUF"/>
+                                    <action selector="pushButton:" destination="W4U-oR-xnq" eventType="touchUpInside" id="cJi-76-m3f"/>
                                 </connections>
                             </button>
                         </subviews>
