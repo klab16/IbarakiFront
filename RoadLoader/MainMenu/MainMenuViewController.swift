@@ -19,6 +19,18 @@ class MainMenuViewController: UIViewController {
     
     var flag = false
     
+    // ボタンの種類の列挙型
+    enum buttonTag: Int {
+        case walk = 1
+        case bike = 2
+        case motorbike = 3
+        case car = 4
+        case track = 5
+    }
+    
+    // ボタンの押下判定を行う辞書
+    var buttonState: Dictionary<String, Bool> = ["walk": false, "bike": false, "motorbike":false, "car": false, "track": false]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,22 +45,27 @@ class MainMenuViewController: UIViewController {
         self.walkButton.setImage(UIImage(named: "walkMan"), for: .normal)
         self.walkButton.setTitle("", for: .normal)
         self.walkButton.tintColor = .gray
+        //self.walkButton.tag = 1 //strorybordで設定
         
         self.bikeButton.setImage(UIImage(named: "bike"), for: .normal)
         self.bikeButton.setTitle("", for: .normal)
         self.bikeButton.tintColor = .gray
+        //self.bikeButton.tag = 2
         
         self.motorbikeButton.setImage(UIImage(named: "motorbike"), for: .normal)
         self.motorbikeButton.setTitle("", for: .normal)
         self.motorbikeButton.tintColor = .gray
+        //self.motorbikeButton.tag = 3
         
         self.carButton.setImage(UIImage(named: "car"), for: .normal)
         self.carButton.setTitle("", for: .normal)
         self.carButton.tintColor = .gray
+        //self.carButton.tag = 4
         
         self.trackButton.setImage(UIImage(named: "track"), for: .normal)
         self.trackButton.setTitle("", for: .normal)
         self.trackButton.tintColor = .gray
+        //self.trackButton.tag = 5
         
         self.saveButton.backgroundColor = .systemBlue
         self.saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -92,16 +109,61 @@ class MainMenuViewController: UIViewController {
         button.backgroundColor = .none
     }
     
-    @IBAction func walkButtonTapped(_ sender: Any) {
+    // 乗り物のボタンを押された時の処理
+    @IBAction func pushButton(_ sender: Any) {
+        guard let button = sender as? UIButton else {
+            return
+        }
+        //print(button.tag)
         
-        // ボタンの反転処理
-        flag = !flag
-        if flag {
-            selectedButtonColor(button: self.walkButton)
-        } else {
-            normalButtonColor(button: self.walkButton)
+        if let tag = buttonTag(rawValue: button.tag) {
+            switch tag {
+            case .walk:
+                buttonAction(buttonName: "walk", button: button)
+            case .bike:
+                buttonAction(buttonName: "bike", button: button)
+            case .motorbike:
+                buttonAction(buttonName: "motorbike", button: button)
+            case .car:
+                buttonAction(buttonName: "car", button: button)
+            case .track:
+                buttonAction(buttonName: "track", button: button)
+            }
         }
     }
     
+    func buttonAction(buttonName: String, button: UIButton) {
+        // ボタンの押下フラグ
+        guard var flag = buttonState[buttonName] else { return }
+        flag = !flag
+        buttonState[buttonName] = flag
+        print(buttonState)
+        
+        if flag {
+            selectedButtonColor(button: button)
+        } else {
+            normalButtonColor(button: button)
+        }
+    }
+    
+//    @IBAction func walkButtonTapped(_ sender: Any) {
+//        // ボタンの反転処理
+//        flag = !flag
+//        if flag {
+//            selectedButtonColor(button: self.walkButton)
+//        } else {
+//            normalButtonColor(button: self.walkButton)
+//        }
+//    }
+//
+//    @IBAction func bikeButtonTapped(_ sender: Any) {
+//        flag = !flag
+//        if flag {
+//            selectedButtonColor(button: self.bikeButton)
+//        } else {
+//            normalButtonColor(button: self.bikeButton)
+//        }
+//    }
     
 }
+
