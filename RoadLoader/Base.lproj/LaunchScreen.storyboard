@@ -18,7 +18,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Klab.inc" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0I-5k-0gB">
                                 <rect key="frame" x="20" y="804" width="374" height="58"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="e0I-5k-0gB" secondAttribute="height" multiplier="187:29" id="qmy-f1-O4s"/>
+                                    <constraint firstAttribute="height" constant="58" id="HYA-ly-HBD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -27,32 +27,30 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RoadLoader" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbU-bb-vU2">
                                 <rect key="frame" x="20" y="423.5" width="374" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="KbU-bb-vU2" secondAttribute="height" multiplier="374:49" id="KoO-Bk-CbQ"/>
+                                    <constraint firstAttribute="height" constant="49" id="kiY-SM-VHQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="tgG-CT-TnU">
-                                <rect key="frame" x="87.5" y="275" width="239" height="127.5"/>
+                                <rect key="frame" x="87.5" y="272.5" width="239" height="127"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="127.5" id="aK3-Lm-s1y"/>
-                                    <constraint firstAttribute="width" constant="239" id="nga-1H-rFa"/>
-                                    <constraint firstAttribute="width" secondItem="tgG-CT-TnU" secondAttribute="height" multiplier="15:8" id="r73-mA-poa"/>
+                                    <constraint firstAttribute="width" secondItem="tgG-CT-TnU" secondAttribute="height" multiplier="239:127" id="Yy1-S7-Bq0"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.27773970370000001" green="0.71399176119999996" blue="0.83294039959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KbU-bb-vU2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HId-sZ-1QW"/>
-                            <constraint firstItem="KbU-bb-vU2" firstAttribute="top" secondItem="tgG-CT-TnU" secondAttribute="bottom" constant="21" id="MCk-xZ-k1E"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e0I-5k-0gB" secondAttribute="trailing" constant="20" id="MpT-lJ-5ux"/>
-                            <constraint firstItem="KbU-bb-vU2" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Q9F-rV-YJh"/>
-                            <constraint firstItem="e0I-5k-0gB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Xxa-r5-dNr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KbU-bb-vU2" secondAttribute="trailing" constant="20" id="ctD-qh-uT0"/>
-                            <constraint firstItem="e0I-5k-0gB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kLg-hH-sYq"/>
-                            <constraint firstItem="tgG-CT-TnU" firstAttribute="centerX" secondItem="KbU-bb-vU2" secondAttribute="centerX" id="yT0-o9-83A"/>
-                            <constraint firstItem="tgG-CT-TnU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="231" id="ysb-2K-FUC"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="0wA-dk-afJ"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5rA-19-7do"/>
+                            <constraint firstItem="e0I-5k-0gB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6ui-fe-f0L"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="86K-4i-VqM"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="trailing" secondItem="e0I-5k-0gB" secondAttribute="trailing" id="Xg4-8J-XTg"/>
+                            <constraint firstItem="tgG-CT-TnU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87.5" id="aJr-zh-cEO"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="leading" secondItem="e0I-5k-0gB" secondAttribute="leading" id="xpe-8q-ULt"/>
+                            <constraint firstItem="KbU-bb-vU2" firstAttribute="top" secondItem="tgG-CT-TnU" secondAttribute="bottom" constant="24" id="yLx-13-CD1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tgG-CT-TnU" secondAttribute="trailing" constant="87.5" id="zb2-Qe-xDo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
