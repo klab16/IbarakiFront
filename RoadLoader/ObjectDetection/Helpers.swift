@@ -1,33 +1,29 @@
-//
-//  Helpers.swift
-//  RoadLoader
-//
-//  Created by 岡本航昇 on 2020/10/18.
-//  Copyright © 2020 wataru okamoto. All rights reserved.
-//
 import Foundation
 import UIKit
 import CoreML
 import Accelerate
 
 // The labels for the 80 classes.
-let labels = [
-    "person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", "traffic light",
-    "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
-    "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
-    "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle",
-    "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange",
-    "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed",
-    "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven",
-    "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
-]
-
-let anchors: [[Float]] = [[116,90,  156,198,  373,326], [30,61,  62,45,  59,119], [10,13,  16,30,  33,23]]
+//let labels = [
+//    "person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", "traffic light",
+//    "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
+//    "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
+//    "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle",
+//    "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange",
+//    "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed",
+//    "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven",
+//    "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
+//]
+let labels = ["sub_sign", "traffic_sign"]
+//let anchors: [[Float]] = [[116,90,  156,198,  373,326], [30,61,  62,45,  59,119], [10,13,  16,30,  33,23]]
+let anchors: [[Float]] = [[81,82,  135,169,  344,319], [10,14,  23,27,  37,58]]
 
 /**
   Removes bounding boxes that overlap too much with other boxes that have
   a higher score.
+
   Based on code from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/non_max_suppression_op.cc
+
   - Parameters:
     - boxes: an array of bounding boxes and their scores
     - limit: the maximum number of boxes that will be selected
@@ -114,12 +110,16 @@ public func sigmoid(_ x: Float) -> Float {
 
 /**
   Computes the "softmax" function over an array.
+
   Based on code from https://github.com/nikolaypavlov/MLPNeuralNet/
+
   This is what softmax looks like in "pseudocode" (actually using Python
   and numpy):
+
       x -= np.max(x)
       exp_scores = np.exp(x)
       softmax = exp_scores / np.sum(exp_scores)
+
   First we shift the values of x so that the highest value in the array is 0.
   This ensures numerical stability with the exponents, so they don't blow up.
 */

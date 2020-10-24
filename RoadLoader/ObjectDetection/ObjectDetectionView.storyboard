@@ -1,7 +1,72 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xcl-V3-BAz">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--od-->
+        <scene sceneID="o46-W5-rqK">
+            <objects>
+                <viewController title="od" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xcl-V3-BAz" customClass="ObjectDetectionViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yeZ-6r-dXr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Emg-yP-RAP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vkl-uB-RCu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-ZO-l9b" userLabel="Video Preview">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kip-it-TS9">
+                                <rect key="frame" x="0.0" y="0.0" width="416" height="416"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZX-bc-Rno" userLabel="Results">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSt-jg-GO4">
+                                        <rect key="frame" x="20" y="10" width="374" height="14"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hSt-jg-GO4" secondAttribute="trailing" constant="20" id="4Xv-IB-Ffc"/>
+                                    <constraint firstItem="hSt-jg-GO4" firstAttribute="top" secondItem="tZX-bc-Rno" secondAttribute="top" constant="10" id="5YV-ev-5gr"/>
+                                    <constraint firstItem="hSt-jg-GO4" firstAttribute="leading" secondItem="tZX-bc-Rno" secondAttribute="leading" constant="20" id="BsE-Aj-Kvh"/>
+                                    <constraint firstAttribute="bottom" secondItem="hSt-jg-GO4" secondAttribute="bottom" constant="10" id="ZJQ-3s-qQw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tZX-bc-Rno" firstAttribute="leading" secondItem="vkl-uB-RCu" secondAttribute="leading" id="4Sw-Ew-hHn"/>
+                            <constraint firstItem="vDo-ZO-l9b" firstAttribute="top" secondItem="vkl-uB-RCu" secondAttribute="top" id="J6c-Jv-T2f"/>
+                            <constraint firstAttribute="trailing" secondItem="vDo-ZO-l9b" secondAttribute="trailing" id="Nvo-8D-Nkk"/>
+                            <constraint firstAttribute="bottom" secondItem="vDo-ZO-l9b" secondAttribute="bottom" id="SnS-nk-jTk"/>
+                            <constraint firstAttribute="bottom" secondItem="tZX-bc-Rno" secondAttribute="bottom" id="Y9a-Yn-3sf"/>
+                            <constraint firstAttribute="trailing" secondItem="tZX-bc-Rno" secondAttribute="trailing" id="Yaz-zp-r6Q"/>
+                            <constraint firstItem="vDo-ZO-l9b" firstAttribute="leading" secondItem="vkl-uB-RCu" secondAttribute="leading" id="gJ6-cJ-qdt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0iE-IW-Dv3"/>
+                    </view>
+                    <connections>
+                        <outlet property="debugImageView" destination="Kip-it-TS9" id="eUn-oW-xGO"/>
+                        <outlet property="timeLabel" destination="hSt-jg-GO4" id="nTG-Uh-dED"/>
+                        <outlet property="videoPreview" destination="vDo-ZO-l9b" id="CWw-iN-Wy1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VBM-al-PHS" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133" y="140"/>
+        </scene>
+    </scenes>
 </document>
