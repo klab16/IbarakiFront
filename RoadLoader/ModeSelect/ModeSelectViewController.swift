@@ -10,6 +10,7 @@ import UIKit
 
 class ModeSelectViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var translationButton: UIButton!
@@ -20,6 +21,8 @@ class ModeSelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // navigationbarの下に画面を作らない
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.title = "モード選択"
         
         guard let userInfo = UserDefaults.standard.dictionary(forKey: "norimono") as? Dictionary<String, Bool> else {
@@ -91,4 +94,19 @@ class ModeSelectViewController: UIViewController {
         self.assistButton.setTitleColor(UIColor.white, for: .normal)
         self.assistButton.layer.cornerRadius = 10.0
     }
+    
+    @IBAction func translationButtonTapped(_ sender: Any) {
+        let sb: UIStoryboard = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
+        if let nextVC: UIViewController = sb.instantiateInitialViewController() {
+            self.show(nextVC, sender: nil)
+        }
+    }
+    
+    @IBAction func assistButtonTapped(_ sender: Any) {
+        let sb: UIStoryboard = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
+        if let nextVC: UIViewController = sb.instantiateInitialViewController() {
+            self.show(nextVC, sender: nil)
+        }
+    }
+    
 }
