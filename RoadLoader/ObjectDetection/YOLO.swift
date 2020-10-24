@@ -1,88 +1,78 @@
-//
-//  YOLO.swift
-//  RoadLoader
-//
-//  Created by 岡本航昇 on 2020/10/17.
-//  Copyright © 2020 wataru okamoto. All rights reserved.
-//
-
-import UIKit
-import AVFoundation
-import CoreML
 import Foundation
-// CVのフレームワーク
-import Vision
+import UIKit
+import CoreML
 
 class YOLO {
-    // static : override不可
     public static let inputWidth = 416
     public static let inputHeight = 416
     public static let maxBoundingBoxes = 10
-    
-    let confidenceThreshold: Double = 0.3
-    let iouThreshold: Double = 0.5
-    
+
+    // Tweak these values to get more or fewer predictions.
+    let confidenceThreshold: Float = 0.6
+    let iouThreshold: Float = 0.5
+
     struct Prediction {
         let classIndex: Int
         let score: Float
         let rect: CGRect
     }
-    
-    // YOLOv3　インスタンス生成
-    // input: image(416 416), iouThreshold, confidenceThreshold
-    // output: confidence: 各バウンディングボックスの信頼度，coodinates: 各バウンディングボックス(x,y,w,h)の正規化された座標
-//    let model = YOLOv3()
-    let model = YOLOv3Tiny()
-//    var yolov3Input: YOLOv3Input
-    
+
+    //  let model = myyolov3()  // v3
+    let model = myyolo()  // Tiny
+
     public init() { }
-    
+
     public func predict(image: CVPixelBuffer) throws -> [Prediction] {
-        let yolov3Input = YOLOv3TinyInput(image: image, iouThreshold: iouThreshold, confidenceThreshold: confidenceThreshold)
-
-//        guard let output = model.prediction(input: yolov3Input) else {
-//            return []
-//        }
-//        return computeBoundingBoxes(features: [output.confidence, output.coordinates])
-
-        if let output = try? model.prediction(input: yolov3Input) {
-            return computeBoundingBoxes(features: [output.coordinates, output.coordinates])
+        if let output = try? model.prediction(input1: image) {
+//            return computeBoundingBoxes(features: [output.output1, output.output2, output.output3])  // v3
+            return computeBoundingBoxes(features: [output.output1, output.output2])  // Tiny
         } else {
             return []
         }
     }
-    
+
     public func computeBoundingBoxes(features: [MLMultiArray]) -> [Prediction] {
-        print("yeah")
-        // assert: 条件を満たさない時エラー
-        // yoloはバウンディングボックスを作る時，13*13のグリッドに分割する
-        assert(features[0].count == 255*13*13)
-        assert(features[1].count == 255*26*26)
-        assert(features[2].count == 255*52*52)
-        
+        assert(features[0].count == 21*13*13)
+        assert(features[1].count == 21*26*26)
+//        assert(features[2].count == 255*52*52)  // v3
+
         var predictions = [Prediction]()
-        
+
         let blockSize: Float = 32
         let boxesPerCell = 3
-        let numClasses = 80
-        
-        let gridHeight = [13, 26, 52]
-        let gridWidth = [13, 26, 52]
-        
+        let numClasses = 2
+
+        // The 416x416 image is divided into a 13x13 grid. Each of these grid cells
+        // will predict 5 bounding boxes (boxesPerCell). A bounding box consists of
+        // five data items: x, y, width, height, and a confidence score. Each grid
+        // cell also predicts which class each bounding box belongs to.
+        //
+        // The "features" array therefore contains (numClasses + 5)*boxesPerCell
+        // values for each grid cell, i.e. 125 channels. The total features array
+        // contains 255x13x13 elements.
+
+        // NOTE: It turns out that accessing the elements in the multi-array as
+        // `features[[channel, cy, cx] as [NSNumber]].floatValue` is kinda slow.
+        // It's much faster to use direct memory access to the features.
+        //    var gridHeight = [13, 26, 52]  // v3
+        //    var gridWidth = [13, 26, 52]  // v3
+        let gridHeight = [13, 26]  // Tiny
+        let gridWidth = [13, 26]  // Tiny
         var featurePointer = UnsafeMutablePointer<Double>(OpaquePointer(features[0].dataPointer))
-        var channelStride = features[0].strides[0].intValue
-        var yStride = features[0].strides[1].intValue
-        var xStride = features[0].strides[2].intValue
-        
+        var channelStride = features[0].strides[2].intValue
+        var yStride = features[0].strides[3].intValue
+        var xStride = features[0].strides[4].intValue
+
         func offset(_ channel: Int, _ x: Int, _ y: Int) -> Int {
             return channel*channelStride + y*yStride + x*xStride
         }
-        
-        for i in 0..<3 {
+
+        //    for i in 0..<3 {  // v3
+        for i in 0..<2 {  // Tiny
             featurePointer = UnsafeMutablePointer<Double>(OpaquePointer(features[i].dataPointer))
-            channelStride = features[i].strides[0].intValue
-            yStride = features[i].strides[1].intValue
-            xStride = features[i].strides[2].intValue
+            channelStride = features[i].strides[2].intValue
+            yStride = features[i].strides[3].intValue
+            xStride = features[i].strides[4].intValue
             for cy in 0..<gridHeight[i] {
                 for cx in 0..<gridWidth[i] {
                     for b in 0..<boxesPerCell {
@@ -106,7 +96,7 @@ class YOLO {
                         let scale = powf(2.0,Float(i)) // scale pos by 2^i where i is the scale pyramid level
                         let x = (Float(cx) * blockSize + sigmoid(tx))/scale
                         let y = (Float(cy) * blockSize + sigmoid(ty))/scale
-                        
+
                         // The size of the bounding box, tw and th, is predicted relative to
                         // the size of an "anchor" box. Here we also transform the width and
                         // height into the original 416x416 image space.
@@ -128,6 +118,7 @@ class YOLO {
                             classes[c] = Float(featurePointer[offset(channel + 5 + c, cx, cy)])
                         }
                         classes = softmax(classes)
+
                         
                         // Find the index of the class with the largest score.
                         let (detectedClass, bestClassScore) = classes.argmax()
@@ -140,7 +131,7 @@ class YOLO {
                         
                         // Since we compute 13x13x3 = 507 bounding boxes, we only want to
                         // keep the ones whose combined score is over a certain threshold.
-                        if confidenceInClass > Float(confidenceThreshold) {
+                        if confidenceInClass > confidenceThreshold {
                             let rect = CGRect(x: CGFloat(x - w/2), y: CGFloat(y - h/2),
                                               width: CGFloat(w), height: CGFloat(h))
                             
@@ -153,11 +144,10 @@ class YOLO {
                 }
             }
         }
-        
-        // We already filtered out any bounding boxes that have very low scores,
-        // but there still may be boxes that overlap too much with others. We'll
-        // use "non-maximum suppression" to prune those duplicate bounding boxes.
-        return nonMaxSuppression(boxes: predictions, limit: YOLO.maxBoundingBoxes, threshold: Float(iouThreshold))
-    }
 
+    // We already filtered out any bounding boxes that have very low scores,
+    // but there still may be boxes that overlap too much with others. We'll
+    // use "non-maximum suppression" to prune those duplicate bounding boxes.
+    return nonMaxSuppression(boxes: predictions, limit: YOLO.maxBoundingBoxes, threshold: iouThreshold)
+    }
 }

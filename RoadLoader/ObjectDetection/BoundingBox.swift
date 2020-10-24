@@ -1,10 +1,3 @@
-//
-//  BoundingBox.swift
-//  RoadLoader
-//
-//  Created by 岡本航昇 on 2020/10/18.
-//  Copyright © 2020 wataru okamoto. All rights reserved.
-//
 import Foundation
 import UIKit
 
@@ -45,7 +38,7 @@ class BoundingBox {
     textLayer.isHidden = false
 
     let attributes = [
-      NSAttributedString.Key.font: textLayer.font as Any
+        NSAttributedString.Key.font: textLayer.font as Any
     ]
 
     let textRect = label.boundingRect(with: CGSize(width: 400, height: 100),

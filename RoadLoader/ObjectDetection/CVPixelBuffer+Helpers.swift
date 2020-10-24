@@ -1,10 +1,3 @@
-//
-//  CVPixelBuffer+Helpers.swift
-//  RoadLoader
-//
-//  Created by 岡本航昇 on 2020/10/18.
-//  Copyright © 2020 wataru okamoto. All rights reserved.
-//
 import Foundation
 import Accelerate
 
@@ -73,4 +66,3 @@ func resizePixelBuffer(_ pixelBuffer: CVPixelBuffer,
                            cropHeight: CVPixelBufferGetHeight(pixelBuffer),
                            scaleWidth: width, scaleHeight: height)
 }
-

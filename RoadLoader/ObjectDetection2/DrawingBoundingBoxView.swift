@@ -43,6 +43,6 @@ class DrawingBoundingView: UIView {
     }
     
     func createLabelAndBox(prediction: VNRecognizedObjectObservation) {
-        let hello = 10
+        //let labelString: String? = prediction.label
     }
 }

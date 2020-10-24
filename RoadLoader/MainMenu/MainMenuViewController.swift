@@ -20,7 +20,7 @@ class MainMenuViewController: UIViewController {
     
     var flag = false
     // 排気量などを格納する変数
-    var detailsNum: Int?
+    var detailsNum: String?
     
     // ボタンの種類の列挙型
     enum buttonTag: Int {
@@ -55,7 +55,7 @@ class MainMenuViewController: UIViewController {
     }
     
     func setButtonIcon() {
-        self.walkButton.setImage(UIImage(named: "walkMan"), for: .normal)
+        self.walkButton.setImage(UIImage(named: "walk"), for: .normal)
         self.walkButton.setTitle("", for: .normal)
         self.walkButton.tintColor = .gray
         //self.walkButton.tag = 1 //strorybordで設定
@@ -250,37 +250,44 @@ class MainMenuViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let num: Int = self.detailsNum else { return }
-        UserDefaults.standard.set(num, forKey: "detail")
-        print("save", num)
+        if let num: String = self.detailsNum {
+            UserDefaults.standard.set(num, forKey: "detail")
+            print("save", num)
+        }
+        
+        let sb: UIStoryboard = UIStoryboard(name: "ModeSelectView", bundle: nil)
+        if let nextVC: UIViewController = sb.instantiateInitialViewController() {
+            self.show(nextVC, sender: nil)
+        }
+        
     }
     
 }
 extension MainMenuViewController: UITextFieldDelegate {
     // 改行ボタンを押した時の処理
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Return")
+        //print("Return")
         return true
     }
 
     // クリアボタンが押された時の処理
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("Clear")
+        //print("Clear")
         return true
     }
 
     // テキストフィールドがフォーカスされた時の処理
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("Start")
+        //print("Start")
         return true
     }
 
     // テキストフィールドでの編集が終了する直前での処理
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("End",textField.text ?? "")
-        if let contents: String = textField.text {
-            self.detailsNum = Int(contents)!
-        }
+        //print("End",textField.text ?? "")
+        guard let contents: String = textField.text else { return true}
+        self.detailsNum = contents
+        
         return true
     }
     

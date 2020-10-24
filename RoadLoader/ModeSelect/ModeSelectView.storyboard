@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rfs-M3-ae7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mode Select View Controller-->
+        <scene sceneID="AGa-pG-hqQ">
+            <objects>
+                <viewController storyboardIdentifier="ModeSelectView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfs-M3-ae7" customClass="ModeSelectViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gjx-FR-FHj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたの乗り物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAr-ld-ToR">
+                                <rect key="frame" x="20" y="64" width="374" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fAr-ld-ToR" secondAttribute="height" multiplier="374:21" id="a8g-Yc-rQc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-Pk-I5D">
+                                <rect key="frame" x="20" y="283" width="374" height="166"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXG-gx-SLc">
+                                <rect key="frame" x="20" y="582" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="VvF-ux-1dg"/>
+                                </constraints>
+                                <state key="normal" title="翻訳"/>
+                                <connections>
+                                    <action selector="translationButtonTapped:" destination="Rfs-M3-ae7" eventType="touchUpInside" id="GOV-3X-eeq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-Ri-9bW">
+                                <rect key="frame" x="20" y="725" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ZTZ-45-aJG"/>
+                                </constraints>
+                                <state key="normal" title="アシスト"/>
+                                <connections>
+                                    <action selector="assistButtonTapped:" destination="Rfs-M3-ae7" eventType="touchUpInside" id="SPU-Tg-azm"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P73-DA-aVV">
+                                <rect key="frame" x="157" y="125" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P73-DA-aVV" secondAttribute="height" multiplier="1:1" id="7J9-RF-GEp"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="3bV-dQ-2gI"/>
+                            <constraint firstItem="SXG-gx-SLc" firstAttribute="leading" secondItem="wA0-Ri-9bW" secondAttribute="leading" id="82M-zL-RVP"/>
+                            <constraint firstItem="fAr-ld-ToR" firstAttribute="top" secondItem="DyO-Ry-k8a" secondAttribute="top" constant="20" id="8XM-ac-zfK"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="wA0-Ri-9bW" secondAttribute="trailing" constant="20" id="AdF-Ug-4r8"/>
+                            <constraint firstItem="SXG-gx-SLc" firstAttribute="trailing" secondItem="wA0-Ri-9bW" secondAttribute="trailing" id="JQp-Pp-K17"/>
+                            <constraint firstItem="DvV-Pk-I5D" firstAttribute="top" secondItem="P73-DA-aVV" secondAttribute="bottom" constant="44" id="L7g-rL-Lmc"/>
+                            <constraint firstItem="SXG-gx-SLc" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="PTg-bF-EUq"/>
+                            <constraint firstItem="fAr-ld-ToR" firstAttribute="leading" secondItem="gjx-FR-FHj" secondAttribute="leadingMargin" id="RHR-0Z-r0l"/>
+                            <constraint firstItem="wA0-Ri-9bW" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="U1N-ot-3L4"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="bottom" secondItem="wA0-Ri-9bW" secondAttribute="bottom" constant="77" id="Uvx-Se-1bC"/>
+                            <constraint firstItem="P73-DA-aVV" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="157" id="VdA-sl-9io"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="SXG-gx-SLc" secondAttribute="trailing" constant="20" id="WJj-Kg-KkC"/>
+                            <constraint firstItem="P73-DA-aVV" firstAttribute="top" secondItem="fAr-ld-ToR" secondAttribute="bottom" constant="40" id="itw-vl-uxc"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="DvV-Pk-I5D" secondAttribute="trailing" constant="20" id="ksp-hY-FJj"/>
+                            <constraint firstItem="wA0-Ri-9bW" firstAttribute="top" secondItem="SXG-gx-SLc" secondAttribute="bottom" constant="83" id="mqZ-ke-i5B"/>
+                            <constraint firstItem="fAr-ld-ToR" firstAttribute="trailing" secondItem="gjx-FR-FHj" secondAttribute="trailingMargin" id="wEK-PH-A4C"/>
+                            <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="P73-DA-aVV" secondAttribute="trailing" constant="157" id="wU3-UD-0G0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DyO-Ry-k8a"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oum-2T-kB3"/>
+                    <connections>
+                        <outlet property="assistButton" destination="wA0-Ri-9bW" id="lSD-8b-N9B"/>
+                        <outlet property="detailView" destination="DvV-Pk-I5D" id="37Q-Ue-MH3"/>
+                        <outlet property="iconImageView" destination="P73-DA-aVV" id="5pc-gi-4pY"/>
+                        <outlet property="titleLabel" destination="fAr-ld-ToR" id="86p-0V-4Od"/>
+                        <outlet property="translationButton" destination="SXG-gx-SLc" id="xoi-hd-f58"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="955-dx-MOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110.144927536232" y="128.57142857142856"/>
+        </scene>
+    </scenes>
+</document>
