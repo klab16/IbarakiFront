@@ -30,6 +30,7 @@ class ModeSelectViewController: UIViewController {
         print(userInfo)
         setIcon()
         setButton()
+        self.detailView.backgroundColor = .systemBackground
         
         // detailが設定されている場合の処理
         guard let detail = UserDefaults.standard.object(forKey: "detail") as? String else {
