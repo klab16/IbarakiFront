@@ -135,8 +135,8 @@
 				1765A6B025443A5000E3A6BC /* Helpers.swift */,
 				1765A6AC25443A5000E3A6BC /* UIImage+CVPixelBuffer.swift */,
 				1765A6AD25443A5000E3A6BC /* VideoCapture.swift */,
-				1765A6AB25443A5000E3A6BC /* ObjectDetectionViewController.swift */,
 				1765A6AE25443A5000E3A6BC /* YOLO.swift */,
+				1765A6AB25443A5000E3A6BC /* ObjectDetectionViewController.swift */,
 				1765A6B925443AD700E3A6BC /* ObjectDetectionView.storyboard */,
 			);
 			path = ObjectDetection;
