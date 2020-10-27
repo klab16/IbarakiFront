@@ -34,6 +34,8 @@
 		176B093E25400E50001C7670 /* ObjectDetection2View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B093D25400E50001C7670 /* ObjectDetection2View.storyboard */; };
 		176B09412540659D001C7670 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176B09402540659D001C7670 /* MainMenuViewController.swift */; };
 		176B0943254065AD001C7670 /* MainMenuView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176B0942254065AD001C7670 /* MainMenuView.storyboard */; };
+		17C6D9E42548074100E24F63 /* myresnet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17C6D9E32548074100E24F63 /* myresnet.mlmodel */; };
+		17C6D9E7254808FC00E24F63 /* ResNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C6D9E6254808FC00E24F63 /* ResNet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		176B093D25400E50001C7670 /* ObjectDetection2View.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ObjectDetection2View.storyboard; sourceTree = "<group>"; };
 		176B09402540659D001C7670 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		176B0942254065AD001C7670 /* MainMenuView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenuView.storyboard; sourceTree = "<group>"; };
+		17C6D9E32548074100E24F63 /* myresnet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = myresnet.mlmodel; sourceTree = "<group>"; };
+		17C6D9E6254808FC00E24F63 /* ResNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResNet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		1741683B253A9F03007FBE66 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				17C6D9E32548074100E24F63 /* myresnet.mlmodel */,
 				1765A6A92544375E00E3A6BC /* myyolo.mlmodel */,
 				17416841253AC949007FBE66 /* Resnet50Int8LUT.mlmodel */,
 				1741683C253AA001007FBE66 /* YOLOv3Tiny.mlmodel */,
@@ -130,8 +135,9 @@
 		17416840253AB3F8007FBE66 /* ObjectDetection */ = {
 			isa = PBXGroup;
 			children = (
-				1765A6B125443A5000E3A6BC /* BoundingBox.swift */,
+				17C6D9E6254808FC00E24F63 /* ResNet.swift */,
 				1765A6AF25443A5000E3A6BC /* CVPixelBuffer+Helpers.swift */,
+				1765A6B125443A5000E3A6BC /* BoundingBox.swift */,
 				1765A6B025443A5000E3A6BC /* Helpers.swift */,
 				1765A6AC25443A5000E3A6BC /* UIImage+CVPixelBuffer.swift */,
 				1765A6AD25443A5000E3A6BC /* VideoCapture.swift */,
@@ -281,9 +287,11 @@
 				1765A6B325443A5000E3A6BC /* UIImage+CVPixelBuffer.swift in Sources */,
 				1765A6B425443A5000E3A6BC /* VideoCapture.swift in Sources */,
 				1765A6AA2544375E00E3A6BC /* myyolo.mlmodel in Sources */,
+				17C6D9E42548074100E24F63 /* myresnet.mlmodel in Sources */,
 				17416848253ACEB5007FBE66 /* ImageRecognitionViewController.swift in Sources */,
 				17416828253A9A67007FBE66 /* AppDelegate.swift in Sources */,
 				176B093A253EF5EA001C7670 /* DrawingBoundingBoxView.swift in Sources */,
+				17C6D9E7254808FC00E24F63 /* ResNet.swift in Sources */,
 				1765A6B825443A5000E3A6BC /* BoundingBox.swift in Sources */,
 				17416845253ACBD1007FBE66 /* RootTabBarController.swift in Sources */,
 				1765A6B625443A5000E3A6BC /* CVPixelBuffer+Helpers.swift in Sources */,
