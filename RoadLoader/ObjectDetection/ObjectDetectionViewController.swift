@@ -25,6 +25,8 @@ class ObjectDetectionViewController: UIViewController {
     var frameCapturingStartTime = CACurrentMediaTime()
     let semaphore = DispatchSemaphore(value: 2)
     
+    var userInfo: Dictionary<String, Bool>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,12 @@ class ObjectDetectionViewController: UIViewController {
         
         // nabvigationbarの下からuiを配置
         self.navigationController?.navigationBar.isTranslucent = false
+        
+        guard let userInfo = UserDefaults.standard.dictionary(forKey: "norimono") as? Dictionary<String, Bool> else {
+            return
+        }
+        self.userInfo = userInfo
+        print(userInfo)
     }
     
     override func didReceiveMemoryWarning() {
@@ -253,8 +261,14 @@ class ObjectDetectionViewController: UIViewController {
     }
     
     func pushAlert(_ label: String) {
+        var norimono: String!
+        for (key, value) in self.userInfo {
+            if value {
+                norimono = key
+            }
+        }
         
-        if label == "traffic_sign" {
+        if label == "traffic_sign" && norimono != "walk" {
             // view
             let alertView = UIView()
             alertView.frame = CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
@@ -266,7 +280,27 @@ class ObjectDetectionViewController: UIViewController {
             let alertLabel = UILabel()
             alertLabel.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.width/2+20, width: UIScreen.main.bounds.size.width, height: 100)
             alertLabel.text = "STOP"
-//            alertLabel.font = UIFont.systemFont(ofSize: 60)
+            alertLabel.font = UIFont(name: "HiraKakuProN-W6", size: 60)
+            alertLabel.textAlignment = .center
+            alertLabel.textColor = .white
+            self.view.addSubview(alertLabel)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                alertView.removeFromSuperview()
+                alertLabel.removeFromSuperview()
+            }
+        } else if norimono == "walk" {
+            // view
+            let alertView = UIView()
+            alertView.frame = CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
+            alertView.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.1)
+            alertView.layer.shadowOpacity = 0.5
+            self.view.addSubview(alertView)
+            
+            // text
+            let alertLabel = UILabel()
+            alertLabel.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.width/2+20, width: UIScreen.main.bounds.size.width, height: 100)
+            alertLabel.text = "PASS"
             alertLabel.font = UIFont(name: "HiraKakuProN-W6", size: 60)
             alertLabel.textAlignment = .center
             alertLabel.textColor = .white
@@ -281,6 +315,10 @@ class ObjectDetectionViewController: UIViewController {
             
         }
     }
+    
+//    func alertType(type: String) {
+//
+//    }
 }
 
 extension ObjectDetectionViewController: VideoCaptureDelegate {
