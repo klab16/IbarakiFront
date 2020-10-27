@@ -182,6 +182,7 @@ class ObjectDetectionViewController: UIViewController {
     func show(predictions: [YOLO.Prediction],  pixelBuffer: CVPixelBuffer) {
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         var classLabel = ""
+        var score: Double = 0.0
         
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
@@ -189,11 +190,14 @@ class ObjectDetectionViewController: UIViewController {
 
                 if prediction.classIndex == 1 {
                     // trafic_signの処理
-                    classLabel = resnetInput(ciImage: ciImage, prediction: prediction)
+                    let ret = resnetInput(ciImage: ciImage, prediction: prediction)
+                    classLabel = ret.label
+                    score = ret.conf
                     
                 } else {
-                    // sub_signの処理
-                    
+                    // sub_signの処理 OCR
+                    classLabel = "sub"
+                    score = 0.0
                 }
                 
                 let width = view.bounds.width
@@ -209,16 +213,17 @@ class ObjectDetectionViewController: UIViewController {
                 rect.size.width *= scaleX
                 rect.size.height *= scaleY
 
-                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
+//                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
+                
                 let color = colors[prediction.classIndex]
-                boundingBoxes[i].show(frame: rect, label: label, color: color)
+                boundingBoxes[i].show(frame: rect, label: classLabel, score: score, color: color)
             } else {
                 boundingBoxes[i].hide()
             }
         }
     }
     
-    func resnetInput(ciImage: CIImage, prediction: YOLO.Prediction) -> String {
+    func resnetInput(ciImage: CIImage, prediction: YOLO.Prediction) -> (label: String, conf: Double) {
         // Translate and scale the rectangle to our own coordinate system.
         let rect = prediction.rect
         let width = CGFloat(480)
@@ -235,7 +240,7 @@ class ObjectDetectionViewController: UIViewController {
 
         // BB部分の切り出し処理
         let realRect = CGRect(x: CGFloat(x), y: CGFloat(640 - y - h), width: CGFloat(w), height: CGFloat(h))
-        guard let resizedPixelBuffer_res = resizedPixelBuffer_res else { return "error" }
+        guard let resizedPixelBuffer_res = resizedPixelBuffer_res else { return ("error", 0.0) }
         let croppedImage = ciImage.cropped(to: realRect)
         let cropImage = ciContext.createCGImage(croppedImage, from:croppedImage.extent)
         let cropped = CIImage(cgImage: cropImage!)
@@ -246,19 +251,22 @@ class ObjectDetectionViewController: UIViewController {
         ciContext.render(scaledImage, to: resizedPixelBuffer_res)
         
         var classLabel: String?
+        var confidence: Double?
         
         // resnetに入力
         if let pred = try? resnet.predict(image: resizedPixelBuffer_res) {
             // predicted label
             classLabel = pred[0].predClass
+            confidence = pred[0].classConfidence[pred[0].predClass]
         } else {
             classLabel = "error"
+            confidence = 0.0
         }
         
-        guard let label: String = classLabel else {
-            return ""
+        guard let label: String = classLabel, let conf: Double = confidence else {
+            return ("", 0.0)
         }
-        return label
+        return (label, conf)
     }
     
     func pushAlert(_ label: String) {
