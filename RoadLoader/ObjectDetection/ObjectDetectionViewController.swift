@@ -181,60 +181,92 @@ class ObjectDetectionViewController: UIViewController {
     
     func show(predictions: [YOLO.Prediction],  pixelBuffer: CVPixelBuffer) {
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        var classLabel = ""
+        var score: Double = 0.0
+        
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
                 let prediction = predictions[i]
 
-                // Translate and scale the rectangle to our own coordinate system.
-                var rect = prediction.rect
-                var width = CGFloat(480)
-                var height = CGFloat(640)
-                var scaleX = width / CGFloat(YOLO.inputWidth)
-                var scaleY = height / CGFloat(YOLO.inputHeight)
-                
-                // Resize the input with Core Image to 224x224.
-                let x = rect.origin.x * scaleX
-                let y = rect.origin.y * scaleY
-                let w = rect.size.width * scaleX
-                let h = rect.size.height * scaleY
-                // adjust y (second arg)
-                let realRect = CGRect(x: CGFloat(x), y: CGFloat(640 - y - h), width: CGFloat(w), height: CGFloat(h))
-                guard let resizedPixelBuffer_res = resizedPixelBuffer_res else { return }
-                let croppedImage = ciImage.cropped(to: realRect)
-                let cropImage = ciContext.createCGImage(croppedImage, from:croppedImage.extent)
-                let cropped = CIImage(cgImage: cropImage!)
-                let sx = CGFloat(224) / CGFloat(w)
-                let sy = CGFloat(224) / CGFloat(h)
-                let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
-                let scaledImage = cropped.transformed(by: scaleTransform)
-                ciContext.render(scaledImage, to: resizedPixelBuffer_res)
-                
-                var classLabel = ""
-                
-                if let pred = try? resnet.predict(image: resizedPixelBuffer_res) {
-                    // predicted label
-                    classLabel = pred[0].predClass
+                if prediction.classIndex == 1 {
+                    // trafic_signの処理
+                    let ret = resnetInput(ciImage: ciImage, prediction: prediction)
+                    classLabel = ret.label
+                    score = ret.conf
+                    
+                } else {
+                    // sub_signの処理 OCR
+                    classLabel = "sub"
+                    score = 0.0
                 }
                 
-                width = view.bounds.width
-                height = width * 4 / 3
-                scaleX = width / CGFloat(YOLO.inputWidth)
-                scaleY = height / CGFloat(YOLO.inputHeight)
+                let width = view.bounds.width
+                let height = width * 4 / 3
+                let scaleX = width / CGFloat(YOLO.inputWidth)
+                let scaleY = height / CGFloat(YOLO.inputHeight)
                 let top = (view.bounds.height - height) / 2
-
+                
+                var rect = prediction.rect
                 rect.origin.x *= scaleX
                 rect.origin.y *= scaleY
                 rect.origin.y += top
                 rect.size.width *= scaleX
                 rect.size.height *= scaleY
 
-                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
+//                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
+                
                 let color = colors[prediction.classIndex]
-                boundingBoxes[i].show(frame: rect, label: label, color: color)
+                boundingBoxes[i].show(frame: rect, label: classLabel, score: score, color: color)
             } else {
                 boundingBoxes[i].hide()
             }
         }
+    }
+    
+    func resnetInput(ciImage: CIImage, prediction: YOLO.Prediction) -> (label: String, conf: Double) {
+        // Translate and scale the rectangle to our own coordinate system.
+        let rect = prediction.rect
+        let width = CGFloat(480)
+        let height = CGFloat(640)
+        let scaleX = width / CGFloat(YOLO.inputWidth)
+        let scaleY = height / CGFloat(YOLO.inputHeight)
+
+        // Resize the input with Core Image to 224x224.
+        let x = rect.origin.x * scaleX
+        let y = rect.origin.y * scaleY
+        let w = rect.size.width * scaleX
+        let h = rect.size.height * scaleY
+        // adjust y (second arg)
+
+        // BB部分の切り出し処理
+        let realRect = CGRect(x: CGFloat(x), y: CGFloat(640 - y - h), width: CGFloat(w), height: CGFloat(h))
+        guard let resizedPixelBuffer_res = resizedPixelBuffer_res else { return ("error", 0.0) }
+        let croppedImage = ciImage.cropped(to: realRect)
+        let cropImage = ciContext.createCGImage(croppedImage, from:croppedImage.extent)
+        let cropped = CIImage(cgImage: cropImage!)
+        let sx = CGFloat(224) / CGFloat(w)
+        let sy = CGFloat(224) / CGFloat(h)
+        let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
+        let scaledImage = cropped.transformed(by: scaleTransform)
+        ciContext.render(scaledImage, to: resizedPixelBuffer_res)
+        
+        var classLabel: String?
+        var confidence: Double?
+        
+        // resnetに入力
+        if let pred = try? resnet.predict(image: resizedPixelBuffer_res) {
+            // predicted label
+            classLabel = pred[0].predClass
+            confidence = pred[0].classConfidence[pred[0].predClass]
+        } else {
+            classLabel = "error"
+            confidence = 0.0
+        }
+        
+        guard let label: String = classLabel, let conf: Double = confidence else {
+            return ("", 0.0)
+        }
+        return (label, conf)
     }
     
     func pushAlert(_ label: String) {
