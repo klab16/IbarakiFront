@@ -10,6 +10,7 @@ class ObjectDetectionViewController: UIViewController {
     @IBOutlet weak var debugImageView: UIImageView!
     
     let yolo = YOLO()
+    let resnet = ResNet()
     
     var videoCapture: VideoCapture!
     var request: VNCoreMLRequest!
@@ -19,11 +20,14 @@ class ObjectDetectionViewController: UIViewController {
     var colors: [UIColor] = []
     
     let ciContext = CIContext()
-    var resizedPixelBuffer: CVPixelBuffer?
+    var resizedPixelBuffer_yolo: CVPixelBuffer?
+    var resizedPixelBuffer_res: CVPixelBuffer?
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
     let semaphore = DispatchSemaphore(value: 2)
+    
+    var userInfo: Dictionary<String, Bool>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +36,18 @@ class ObjectDetectionViewController: UIViewController {
         
         setUpBoundingBoxes()
         setUpCoreImage()
-        setUpVision()
         setUpCamera()
         
         frameCapturingStartTime = CACurrentMediaTime()
         
         // nabvigationbarの下からuiを配置
         self.navigationController?.navigationBar.isTranslucent = false
+        
+        guard let userInfo = UserDefaults.standard.dictionary(forKey: "norimono") as? Dictionary<String, Bool> else {
+            return
+        }
+        self.userInfo = userInfo
+        print(userInfo)
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,28 +75,16 @@ class ObjectDetectionViewController: UIViewController {
     }
     
     func setUpCoreImage() {
-        let status = CVPixelBufferCreate(nil, YOLO.inputWidth, YOLO.inputHeight,
-                                         kCVPixelFormatType_32BGRA, nil,
-                                         &resizedPixelBuffer)
+        let status = CVPixelBufferCreate(nil, YOLO.inputWidth, YOLO.inputHeight, kCVPixelFormatType_32BGRA, nil, &resizedPixelBuffer_yolo)
+        let status_res = CVPixelBufferCreate(nil, ResNet.inputWidth, ResNet.inputHeight, kCVPixelFormatType_32BGRA, nil, &resizedPixelBuffer_res)
         if status != kCVReturnSuccess {
             print("Error: could not create resized pixel buffer", status)
         }
-    }
-    
-    func setUpVision() {
-        guard let visionModel = try? VNCoreMLModel(for: yolo.model.model) else {
-            print("Error: could not create Vision model")
-            return
+        if status_res != kCVReturnSuccess {
+            print("Error: could not create resized pixel buffer", status_res)
         }
-        
-        request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-        
-        // NOTE: If you choose another crop/scale option, then you must also
-        // change how the BoundingBox objects get scaled when they are drawn.
-        // Currently they assume the full input image is used.
-        request.imageCropAndScaleOption = .scaleFill
     }
-    
+
     func setUpCamera() {
         videoCapture = VideoCapture()
         videoCapture.delegate = self
@@ -139,55 +136,29 @@ class ObjectDetectionViewController: UIViewController {
         let startTime = CACurrentMediaTime()
         
         // Resize the input with Core Image to 416x416.
-        guard let resizedPixelBuffer = resizedPixelBuffer else { return }
+        guard let resizedPixelBuffer_yolo = resizedPixelBuffer_yolo else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let sx = CGFloat(YOLO.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))
         let sy = CGFloat(YOLO.inputHeight) / CGFloat(CVPixelBufferGetHeight(pixelBuffer))
         let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
         let scaledImage = ciImage.transformed(by: scaleTransform)
-        ciContext.render(scaledImage, to: resizedPixelBuffer)
-        
-        // This is an alternative way to resize the image (using vImage):
-        //if let resizedPixelBuffer = resizePixelBuffer(pixelBuffer,
-        //                                              width: YOLO.inputWidth,
-        //                                              height: YOLO.inputHeight)
+        ciContext.render(scaledImage, to: resizedPixelBuffer_yolo)
         
         // Resize the input to 416x416 and give it to our model.
-        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer_yolo) {
             let elapsed = CACurrentMediaTime() - startTime
-            showOnMainThread(boundingBoxes, elapsed)
+            showOnMainThread(boundingBoxes, elapsed, pixelBuffer)
         }
     }
-    
-    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
-        // Measure how long it takes to predict a single video frame. Note that
-        // predict() can be called on the next frame while the previous one is
-        // still being processed. Hence the need to queue up the start times.
-        startTimes.append(CACurrentMediaTime())
-        
-        // Vision will automatically resize the input image.
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
-        try? handler.perform([request])
-    }
-    
-    func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-            let features = observations.first?.featureValue.multiArrayValue {
-            
-            let boundingBoxes = yolo.computeBoundingBoxes(features: [features, features, features])
-            let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
-            showOnMainThread(boundingBoxes, elapsed)
-        }
-    }
-    
-    func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval) {
+
+    func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval, _ pixelBuffer: CVPixelBuffer) {
         DispatchQueue.main.async {
             // For debugging, to make sure the resized CVPixelBuffer is correct.
             //var debugImage: CGImage?
             //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
             //self.debugImageView.image = UIImage(cgImage: debugImage!)
             
-            self.show(predictions: boundingBoxes)
+            self.show(predictions: boundingBoxes, pixelBuffer: pixelBuffer)
             
             let fps = self.measureFPS()
             self.timeLabel.text = String(format: "Elapsed %.5f seconds - %.2f FPS", elapsed, fps)
@@ -208,44 +179,58 @@ class ObjectDetectionViewController: UIViewController {
         return currentFPSDelivered
     }
     
-    func show(predictions: [YOLO.Prediction]) {
+    func show(predictions: [YOLO.Prediction],  pixelBuffer: CVPixelBuffer) {
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
                 let prediction = predictions[i]
-                
-                // The predicted bounding box is in the coordinate space of the input
-                // image, which is a square image of 416x416 pixels. We want to show it
-                // on the video preview, which is as wide as the screen and has a 4:3
-                // aspect ratio. The video preview also may be letterboxed at the top
-                // and bottom.
-                let width = view.bounds.width
-                let height = width * 4 / 3
-                let scaleX = width / CGFloat(YOLO.inputWidth)
-                let scaleY = height / CGFloat(YOLO.inputHeight)
-                let top = (view.bounds.height - height) / 2
-                
+
                 // Translate and scale the rectangle to our own coordinate system.
                 var rect = prediction.rect
+                var width = CGFloat(480)
+                var height = CGFloat(640)
+                var scaleX = width / CGFloat(YOLO.inputWidth)
+                var scaleY = height / CGFloat(YOLO.inputHeight)
+                
+                // Resize the input with Core Image to 224x224.
+                let x = rect.origin.x * scaleX
+                let y = rect.origin.y * scaleY
+                let w = rect.size.width * scaleX
+                let h = rect.size.height * scaleY
+                // adjust y (second arg)
+                let realRect = CGRect(x: CGFloat(x), y: CGFloat(640 - y - h), width: CGFloat(w), height: CGFloat(h))
+                guard let resizedPixelBuffer_res = resizedPixelBuffer_res else { return }
+                let croppedImage = ciImage.cropped(to: realRect)
+                let cropImage = ciContext.createCGImage(croppedImage, from:croppedImage.extent)
+                let cropped = CIImage(cgImage: cropImage!)
+                let sx = CGFloat(224) / CGFloat(w)
+                let sy = CGFloat(224) / CGFloat(h)
+                let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
+                let scaledImage = cropped.transformed(by: scaleTransform)
+                ciContext.render(scaledImage, to: resizedPixelBuffer_res)
+                
+                var classLabel = ""
+                
+                if let pred = try? resnet.predict(image: resizedPixelBuffer_res) {
+                    // predicted label
+                    classLabel = pred[0].predClass
+                }
+                
+                width = view.bounds.width
+                height = width * 4 / 3
+                scaleX = width / CGFloat(YOLO.inputWidth)
+                scaleY = height / CGFloat(YOLO.inputHeight)
+                let top = (view.bounds.height - height) / 2
+
                 rect.origin.x *= scaleX
                 rect.origin.y *= scaleY
                 rect.origin.y += top
                 rect.size.width *= scaleX
                 rect.size.height *= scaleY
-                
-                // Show the bounding box.
-                let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
+
+                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
                 let color = colors[prediction.classIndex]
                 boundingBoxes[i].show(frame: rect, label: label, color: color)
-                
-                // sub_sign 95.7
-                //print(label)
-                
-                // traffic_sign
-                //print(labels[prediction.classIndex])
-                
-                // ユーザーに注意を促す処理
-                pushAlert(labels[prediction.classIndex])
-                
             } else {
                 boundingBoxes[i].hide()
             }
@@ -253,8 +238,14 @@ class ObjectDetectionViewController: UIViewController {
     }
     
     func pushAlert(_ label: String) {
+        var norimono: String!
+        for (key, value) in self.userInfo {
+            if value {
+                norimono = key
+            }
+        }
         
-        if label == "traffic_sign" {
+        if label == "traffic_sign" && norimono != "walk" {
             // view
             let alertView = UIView()
             alertView.frame = CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
@@ -266,7 +257,27 @@ class ObjectDetectionViewController: UIViewController {
             let alertLabel = UILabel()
             alertLabel.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.width/2+20, width: UIScreen.main.bounds.size.width, height: 100)
             alertLabel.text = "STOP"
-//            alertLabel.font = UIFont.systemFont(ofSize: 60)
+            alertLabel.font = UIFont(name: "HiraKakuProN-W6", size: 60)
+            alertLabel.textAlignment = .center
+            alertLabel.textColor = .white
+            self.view.addSubview(alertLabel)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                alertView.removeFromSuperview()
+                alertLabel.removeFromSuperview()
+            }
+        } else if norimono == "walk" {
+            // view
+            let alertView = UIView()
+            alertView.frame = CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
+            alertView.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.1)
+            alertView.layer.shadowOpacity = 0.5
+            self.view.addSubview(alertView)
+            
+            // text
+            let alertLabel = UILabel()
+            alertLabel.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.width/2+20, width: UIScreen.main.bounds.size.width, height: 100)
+            alertLabel.text = "PASS"
             alertLabel.font = UIFont(name: "HiraKakuProN-W6", size: 60)
             alertLabel.textAlignment = .center
             alertLabel.textColor = .white
@@ -281,22 +292,19 @@ class ObjectDetectionViewController: UIViewController {
             
         }
     }
+    
+//    func alertType(type: String) {
+//
+//    }
 }
 
 extension ObjectDetectionViewController: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
-        // For debugging.
-        //predict(image: UIImage(named: "dog416")!); return
-        
         semaphore.wait()
         
         if let pixelBuffer = pixelBuffer {
-            // For better throughput, perform the prediction on a background queue
-            // instead of on the VideoCapture queue. We use the semaphore to block
-            // the capture queue and drop frames when Core ML can't keep up.
             DispatchQueue.global().async {
                 self.predict(pixelBuffer: pixelBuffer)
-                //self.predictUsingVision(pixelBuffer: pixelBuffer)
             }
         }
     }
