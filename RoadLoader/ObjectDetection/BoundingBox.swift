@@ -43,9 +43,10 @@ class BoundingBox {
         
         if center {
             // 中央表示モード（翻訳を想定）
-            guard let classLabel = resnet_cls2jp[label] else {
-                return
-            }
+//            guard let classLabel = NSLocalizedString(label, comment: "") else {
+//                return
+//            }
+            let classLabel = NSLocalizedString(label, comment: "")
             let text = String(format: "%@", classLabel)
             textLayer.string = text
             textLayer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor
