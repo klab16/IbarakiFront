@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rfs-M3-ae7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rfs-M3-ae7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,9 +28,9 @@
                             </label>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-Pk-I5D">
                                 <rect key="frame" x="20" y="283" width="374" height="166"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXG-gx-SLc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXG-gx-SLc">
                                 <rect key="frame" x="20" y="582" width="374" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="VvF-ux-1dg"/>
@@ -38,7 +40,7 @@
                                     <action selector="translationButtonTapped:" destination="Rfs-M3-ae7" eventType="touchUpInside" id="GOV-3X-eeq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-Ri-9bW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-Ri-9bW">
                                 <rect key="frame" x="20" y="725" width="374" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ZTZ-45-aJG"/>
@@ -55,7 +57,8 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="DyO-Ry-k8a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DvV-Pk-I5D" firstAttribute="leading" secondItem="DyO-Ry-k8a" secondAttribute="leading" constant="20" id="3bV-dQ-2gI"/>
                             <constraint firstItem="SXG-gx-SLc" firstAttribute="leading" secondItem="wA0-Ri-9bW" secondAttribute="leading" id="82M-zL-RVP"/>
@@ -75,13 +78,13 @@
                             <constraint firstItem="fAr-ld-ToR" firstAttribute="trailing" secondItem="gjx-FR-FHj" secondAttribute="trailingMargin" id="wEK-PH-A4C"/>
                             <constraint firstItem="DyO-Ry-k8a" firstAttribute="trailing" secondItem="P73-DA-aVV" secondAttribute="trailing" constant="157" id="wU3-UD-0G0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="DyO-Ry-k8a"/>
                     </view>
                     <navigationItem key="navigationItem" id="Oum-2T-kB3"/>
                     <connections>
                         <outlet property="assistButton" destination="wA0-Ri-9bW" id="lSD-8b-N9B"/>
                         <outlet property="detailView" destination="DvV-Pk-I5D" id="37Q-Ue-MH3"/>
                         <outlet property="iconImageView" destination="P73-DA-aVV" id="5pc-gi-4pY"/>
+                        <outlet property="mainTextLabel" destination="fAr-ld-ToR" id="ad6-ka-2lG"/>
                         <outlet property="titleLabel" destination="fAr-ld-ToR" id="86p-0V-4Od"/>
                         <outlet property="translationButton" destination="SXG-gx-SLc" id="xoi-hd-f58"/>
                     </connections>
@@ -91,4 +94,12 @@
             <point key="canvasLocation" x="1110.144927536232" y="128.57142857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

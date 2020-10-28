@@ -17,6 +17,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var trackButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var mainTextLabel: UILabel!
     
     var flag = false
     // 排気量などを格納する変数
@@ -52,6 +53,10 @@ class MainMenuViewController: UIViewController {
         
         // detailsViewの色を普通の色にする
         //self.detailsView.backgroundColor = .systemBackground
+        
+        self.navigationItem.title = NSLocalizedString("Menu", comment: "")
+        self.mainTextLabel.text = NSLocalizedString("Select your transportation", comment: "")
+        self.mainTextLabel.tintColor = .systemGray
     }
     
     func setButtonIcon() {
@@ -82,6 +87,7 @@ class MainMenuViewController: UIViewController {
         
         self.saveButton.backgroundColor = .systemBlue
         self.saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.saveButton.setTitle(NSLocalizedString("Save", comment: ""), for: .normal)
         self.saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25.0)
         self.saveButton.setTitleColor(UIColor.white, for: .normal)
     }
@@ -227,10 +233,12 @@ class MainMenuViewController: UIViewController {
         unitLabel.text = ""
         
         if buttonName == "motorbike" {
-            textField.placeholder = "排気量を入力してください"
+            //textField.placeholder = "排気量を入力してください"
+            textField.placeholder = NSLocalizedString("Enter the displacement", comment: "")
             unitLabel.text = "cc"
         } else if buttonName == "track" {
-            textField.placeholder = "重量を入力してください"
+            //textField.placeholder = "重量を入力してください"
+            textField.placeholder = NSLocalizedString("Enter the weight", comment: "")
             unitLabel.text = "t"
         }
         

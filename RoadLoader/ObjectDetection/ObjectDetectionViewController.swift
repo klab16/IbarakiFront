@@ -55,9 +55,9 @@ class ObjectDetectionViewController: UIViewController {
         guard let md = UserDefaults.standard.string(forKey: "mode") else { return }
         self.mode = md
         if md == "translation" {
-            self.navigationItem.title = "翻訳モード"
+            self.navigationItem.title = NSLocalizedString("Translation Mode", comment: "")
         } else if md == "assist" {
-            self.navigationItem.title = "アシストモード"
+            self.navigationItem.title = NSLocalizedString("Assist Mode", comment: "")
         }
     }
     

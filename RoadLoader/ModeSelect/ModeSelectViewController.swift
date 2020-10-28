@@ -15,6 +15,7 @@ class ModeSelectViewController: UIViewController {
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var translationButton: UIButton!
     @IBOutlet weak var assistButton: UIButton!
+    @IBOutlet weak var mainTextLabel: UILabel!
     
     var userInfo: Dictionary<String, Bool>!
     
@@ -23,7 +24,8 @@ class ModeSelectViewController: UIViewController {
         
         // navigationbarの下に画面を作らない
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.title = "モード選択"
+        //self.navigationItem.title = "モード選択"
+        self.navigationItem.title = NSLocalizedString("Select mode", comment: "")
         
         guard let userInfo = UserDefaults.standard.dictionary(forKey: "norimono") as? Dictionary<String, Bool> else {
             print("入ってないよ")
@@ -34,6 +36,9 @@ class ModeSelectViewController: UIViewController {
         setIcon()
         setButton()
         self.detailView.backgroundColor = .systemBackground
+        
+        self.mainTextLabel.text = NSLocalizedString("Your transportation", comment: "")
+        self.mainTextLabel.tintColor = .systemGray
         
         // detailが設定されている場合の処理
         guard let detail = UserDefaults.standard.object(forKey: "detail") as? String else {
@@ -49,6 +54,9 @@ class ModeSelectViewController: UIViewController {
                 }
             }
         }
+        
+        self.translationButton.setTitle(NSLocalizedString("Translation Mode", comment: ""), for: .normal)
+        self.assistButton.setTitle(NSLocalizedString("Assist Mode", comment: ""), for: .normal)
         
     }
     
@@ -74,9 +82,11 @@ class ModeSelectViewController: UIViewController {
         label.textColor = .systemGray
         
         if bikeTrack == "motorbike" {
-            label.text = "排気量は" + detail + "cc"
+            //label.text = "排気量は" + detail + "cc"
+            label.text = NSLocalizedString("Your displacement is ", comment: "") + detail + "cc"
         } else if bikeTrack == "track" {
-            label.text = "重量は" + detail + "t"
+            //label.text = "重量は" + detail + "t"
+            label.text = NSLocalizedString("Your weight is ", comment: "") + detail + "t"
         }
         
         self.detailView.addSubview(label)

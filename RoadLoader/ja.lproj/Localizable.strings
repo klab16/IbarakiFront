@@ -31,3 +31,16 @@
 "peds_only" =  "歩行者専用";
 "stop" =  "止まれ";
 "height_limit" =  "高さ制限";
+"Menu" = "乗り物選択";
+"Select your transportation" = "交通手段を選んでください";
+"Enter the displacement" = "排気量を入力してください";
+"Enter the weight" = "重量を入力してください";
+"Save" = "保存";
+"Select mode" = "モード選択";
+"Your transportation" = "あなたの交通手段";
+"Translation Mode" = "翻訳";
+"Assist Mode" = "アシスト";
+"Your displacement is " = "排気量は";
+"Your weight is " = "重量は";
+"Translation Mode" = "翻訳モード";
+"Assist Mode" = "アシストモード";
