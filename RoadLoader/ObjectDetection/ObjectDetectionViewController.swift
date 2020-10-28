@@ -54,6 +54,11 @@ class ObjectDetectionViewController: UIViewController {
         // モードの取得
         guard let md = UserDefaults.standard.string(forKey: "mode") else { return }
         self.mode = md
+        if md == "translation" {
+            self.navigationItem.title = "翻訳モード"
+        } else if md == "assist" {
+            self.navigationItem.title = "アシストモード"
+        }
     }
     
     override func didReceiveMemoryWarning() {
