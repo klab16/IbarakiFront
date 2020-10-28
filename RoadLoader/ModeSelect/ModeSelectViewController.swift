@@ -55,8 +55,8 @@ class ModeSelectViewController: UIViewController {
             }
         }
         
-        self.translationButton.setTitle(NSLocalizedString("Translation Mode", comment: ""), for: .normal)
-        self.assistButton.setTitle(NSLocalizedString("Assist Mode", comment: ""), for: .normal)
+        self.translationButton.setTitle(NSLocalizedString("Translation mode", comment: ""), for: .normal)
+        self.assistButton.setTitle(NSLocalizedString("Assist mode", comment: ""), for: .normal)
         
     }
     
