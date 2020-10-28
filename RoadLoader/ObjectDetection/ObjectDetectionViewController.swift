@@ -204,7 +204,6 @@ class ObjectDetectionViewController: UIViewController {
                     let ret = resnetInput(ciImage: ciImage, prediction: prediction)
                     classLabel = ret.label
                     score = ret.conf
-                    print(classLabel)
                     
                 } else {
                     // sub_signの処理 OCR
@@ -279,6 +278,10 @@ class ObjectDetectionViewController: UIViewController {
         guard let label: String = classLabel, let conf: Double = confidence else {
             return ("", 0.0)
         }
+        
+        if mode == "assist" {
+            pushAlert(label)
+        }
         return (label, conf)
     }
     
@@ -290,7 +293,7 @@ class ObjectDetectionViewController: UIViewController {
             }
         }
         
-        if label == "traffic_sign" && norimono != "walk" {
+        if (label == "stop" || label == "no_entry" || label == "closed_road" || label == "closed_vehicles") && norimono != "walk" {
             // view
             let alertView = UIView()
             alertView.frame = CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
