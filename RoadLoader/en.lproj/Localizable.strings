@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  RoadLoader
+
+  Created by shun on 2020/10/28.
+  Copyright © 2020 wataru okamoto. All rights reserved.
+*/
+"no_bicycles" = "no bicycles";
+"peds_bicycles_crossing" =  "crossing for pedestraians and bicycles";
+"no_vehicles" = "no motor vehicles except motorcycles and mopeds";
+"weight_limit" =  "no vehicles weighing over x tonnes";
+"no_motorcycles" =  "no motorcycles or mopeds";
+"closed_vehicles" =  "road closed to vehicles";
+"width_limit" =  "no vehicles wider than x meters";
+"one_way" =  "one-way street";
+"vehicles_only" =  "motor vehicles only";
+"slow" =  "slow";
+"no_stopping" =  "no stopping";
+"speed_limit" =  "speed limit (km/h)";
+"crosswalk" =  "crosswalk";
+"traffic_rights_ahead" =  "traffic rights ahead";
+"closed_road" =  "road closed to all";
+"no_overtaking" =  "no overtaking";
+"bicycles_and_peds_only" =  "bicycles and pedestrians only";
+"no_parking" =  "no parking";
+"bicycles_only" =  "bicycles only";
+"no_entry" =  "no entry";
+"no_peds_crossing" =  "no pedestrian crossing";
+"bicycles_crossing" =  "bicycles crossing";
+"peds_only" =  "pedestrians only";
+"stop" =  "stop";
+"height_limit" =  "no vehicles higher than x meters";
