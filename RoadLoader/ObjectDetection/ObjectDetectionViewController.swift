@@ -199,6 +199,7 @@ class ObjectDetectionViewController: UIViewController {
                     let ret = resnetInput(ciImage: ciImage, prediction: prediction)
                     classLabel = ret.label
                     score = ret.conf
+                    print(classLabel)
                     
                 } else {
                     // sub_signの処理 OCR
