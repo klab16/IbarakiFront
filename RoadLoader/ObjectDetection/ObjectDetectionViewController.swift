@@ -29,6 +29,8 @@ class ObjectDetectionViewController: UIViewController {
     
     var userInfo: Dictionary<String, Bool>!
     
+    var mode: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +50,10 @@ class ObjectDetectionViewController: UIViewController {
         }
         self.userInfo = userInfo
         print(userInfo)
+        
+        // モードの取得
+        guard let md = UserDefaults.standard.string(forKey: "mode") else { return }
+        self.mode = md
     }
     
     override func didReceiveMemoryWarning() {
@@ -193,6 +199,7 @@ class ObjectDetectionViewController: UIViewController {
                     let ret = resnetInput(ciImage: ciImage, prediction: prediction)
                     classLabel = ret.label
                     score = ret.conf
+                    print(classLabel)
                     
                 } else {
                     // sub_signの処理 OCR
@@ -216,7 +223,8 @@ class ObjectDetectionViewController: UIViewController {
 //                let label = String(format: "%@ %.1f", classLabel, prediction.score * 100)
                 
                 let color = colors[prediction.classIndex]
-                boundingBoxes[i].show(frame: rect, label: classLabel, score: score, color: color)
+                guard let mode: String = self.mode else { return }
+                boundingBoxes[i].show(frame: rect, label: classLabel, score: score, color: color, mode: mode)
             } else {
                 boundingBoxes[i].hide()
             }

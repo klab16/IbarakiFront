@@ -4,6 +4,7 @@ import UIKit
 class BoundingBox {
     let shapeLayer: CAShapeLayer
     let textLayer: CATextLayer
+    var center: Bool = false
     
     init() {
         shapeLayer = CAShapeLayer()
@@ -25,8 +26,15 @@ class BoundingBox {
         parent.addSublayer(textLayer)
     }
     
-    func show(frame: CGRect, label: String, score: Double, color: UIColor) {
-        let center = true
+    func show(frame: CGRect, label: String, score: Double, color: UIColor, mode:String) {
+        
+        // モード設定
+        if mode == "translation" {
+            center = true
+        } else if mode == "assist" {
+            center = false
+        }
+        
         CATransaction.setDisableActions(true)
         
         let path = UIBezierPath(rect: frame)

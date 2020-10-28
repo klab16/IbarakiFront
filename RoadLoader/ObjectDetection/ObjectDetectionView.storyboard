@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xcl-V3-BAz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xcl-V3-BAz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--od-->
+        <!--Object Detection View Controller-->
         <scene sceneID="o46-W5-rqK">
             <objects>
-                <viewController title="od" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xcl-V3-BAz" customClass="ObjectDetectionViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="xcl-V3-BAz" customClass="ObjectDetectionViewController" customModule="RoadLoader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yeZ-6r-dXr"/>
                         <viewControllerLayoutGuide type="bottom" id="Emg-yP-RAP"/>
@@ -46,6 +47,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="0iE-IW-Dv3"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tZX-bc-Rno" firstAttribute="leading" secondItem="vkl-uB-RCu" secondAttribute="leading" id="4Sw-Ew-hHn"/>
@@ -56,7 +58,6 @@
                             <constraint firstAttribute="trailing" secondItem="tZX-bc-Rno" secondAttribute="trailing" id="Yaz-zp-r6Q"/>
                             <constraint firstItem="vDo-ZO-l9b" firstAttribute="leading" secondItem="vkl-uB-RCu" secondAttribute="leading" id="gJ6-cJ-qdt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="0iE-IW-Dv3"/>
                     </view>
                     <connections>
                         <outlet property="debugImageView" destination="Kip-it-TS9" id="eUn-oW-xGO"/>

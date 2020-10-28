@@ -57,9 +57,10 @@ class ModeSelectViewController: UIViewController {
         for (key, value) in self.userInfo {
             if value {
                 print(key)
-                iconImageView.image = UIImage(named: key)
+                iconImageView.image = UIImage(named: key)?.withRenderingMode(.alwaysTemplate)
                 iconImageView.contentMode = .scaleAspectFill
                 iconImageView.tintColor = .gray
+                
             }
         }
     }
@@ -70,6 +71,7 @@ class ModeSelectViewController: UIViewController {
         label.frame = CGRect(x: 0, y: 20, width: UIScreen.main.bounds.size.width - 20, height: 44)
         label.textAlignment = NSTextAlignment.center
         label.font = UIFont(name: "HiraKakuProN-W6", size: 20)
+        label.textColor = .systemGray
         
         if bikeTrack == "motorbike" {
             label.text = "排気量は" + detail + "cc"
@@ -96,6 +98,8 @@ class ModeSelectViewController: UIViewController {
     }
     
     @IBAction func translationButtonTapped(_ sender: Any) {
+        let mode: String = "translation"
+        UserDefaults.standard.set(mode, forKey: "mode")
         let sb: UIStoryboard = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
         if let nextVC: UIViewController = sb.instantiateInitialViewController() {
             self.show(nextVC, sender: nil)
@@ -103,6 +107,8 @@ class ModeSelectViewController: UIViewController {
     }
     
     @IBAction func assistButtonTapped(_ sender: Any) {
+        let mode: String = "assist"
+        UserDefaults.standard.set(mode, forKey: "mode")
         let sb: UIStoryboard = UIStoryboard(name: "ObjectDetectionView", bundle: nil)
         if let nextVC: UIViewController = sb.instantiateInitialViewController() {
             self.show(nextVC, sender: nil)
