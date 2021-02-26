@@ -19,4 +19,4 @@
 
 ## 動画
 - [デモ](https://www.youtube.com/watch?v=WdIuEPaCuA4&feature=youtu.be)
-- [発表動画](https://www.youtube.com/watch?v=7ymQQjOcHIw&feature=emb_title)
+- [発表](https://www.youtube.com/watch?v=7ymQQjOcHIw&feature=emb_title)
