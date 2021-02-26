@@ -2,8 +2,8 @@
 <img src=https://user-images.githubusercontent.com/44032125/98234773-3fc67380-1fa4-11eb-8fbe-2bd8e7eefe9c.png width="200">
 
 ## 概要
-いばらきデジタルコンテンツ・ソフトウェア大賞２０２０ アプリ・ソフトウェア・IoT部門 **優秀賞** 作品  
-[コンテストWebページ](http://www.it-ibaraki.jp/contest/digicon2020/judge.html)
+[いばらきデジタルコンテンツ・ソフトウェア大賞２０２０ アプリ・ソフトウェア・IoT部門](http://www.it-ibaraki.jp/contest/digicon2020/judge.html)  **優秀賞** 作品  
+
 
 ## チーム名
 川本.nct
