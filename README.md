@@ -5,8 +5,8 @@
 川本.nct
 
 ## メンバー
-- 岡本航昇
-- 木村駿 
+- [岡本航昇](https://github.com/wataru0)
+- [木村駿](https://github.com/tj16kimura)
 
 ## コンセプト
 - 道路標識は分かりづらい！
