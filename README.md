@@ -33,7 +33,7 @@
 
 <img src=https://user-images.githubusercontent.com/44032125/109286000-17b99380-7865-11eb-8c62-a4a851303d5c.gif width="400">
 
-## 動画
+## 紹介動画
 - [デモ](https://www.youtube.com/watch?v=WdIuEPaCuA4&feature=youtu.be)
 - [発表](https://www.youtube.com/watch?v=7ymQQjOcHIw&feature=emb_title)
 
